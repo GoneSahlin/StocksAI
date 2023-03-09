@@ -2,8 +2,10 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
-import shutil
 import time
+import requests
+import polars as pl
+from io import StringIO
 
 
 def open_driver():
@@ -13,7 +15,8 @@ def open_driver():
 
     # create options and service
     options = Options()
-    options.binary_location = firefox_path    
+    options.binary_location = firefox_path
+    options.add_argument("-headless")
     service = Service(executable_path=driver_path)
 
     # create a driver
@@ -23,7 +26,7 @@ def open_driver():
     return driver
 
 
-def get_download(driver, ticker):
+def get_download_link(driver, ticker):
     # url
     url = "https://finance.yahoo.com/quote/" + ticker + "/history"
 
@@ -41,7 +44,7 @@ def get_download(driver, ticker):
         pass
 
     # click on dropdown
-    dropdown = driver.find_elements(By.XPATH, "//div[@role='button'][@aria-label='']")[1]
+    dropdown = driver.find_element(By.XPATH, "//div[@role='button'][@aria-label='']")
     dropdown.click()
 
     # click on max
@@ -49,28 +52,50 @@ def get_download(driver, ticker):
     max.click()
 
     # click on apply
-    apply = driver.find_element(By.XPATH, "//span[text()='Apply']")
+    apply = driver.find_element(By.XPATH, "//span[text()='Apply']/parent::*")
     apply.click()
 
     # click on download
     download = driver.find_element(By.XPATH, "//a[@download='" + ticker + ".csv']")
-    download.click()
+    link = download.get_attribute("href")
 
-    # move download
-    time.sleep(4)
-    src = r"/home/zach/Downloads/" + ticker + ".csv"
-    dst = r"downloads"
-    shutil.move(src, dst)
+    return link
+
+
+def get_data(link):
+    try:
+        response = requests.get(link, headers={'User-agent': 'Mozilla/5.0'})
+        response.raise_for_status()
+
+        return response.text
+    except requests.exceptions.RequestException as e:
+        print(e.response.text)
+        
+
+def clean_data(data: str) -> pl.DataFrame:
+    df = pl.read_csv(StringIO(data))
+    df = df.drop(["Open","High","Low","Close"])
+
+    return df
+
+
+def save_to_csv(ticker, df: pl.DataFrame):
+    filepath = "../data/" + ticker + ".csv"
+    
+    df.write_csv(filepath)        
 
 
 def main():
     driver = open_driver()
 
-    get_download(driver, "F")
-    get_download(driver, "AAPL")
+    link = get_download_link(driver, "F")
+    # get_download(driver, "AAPL")
 
-    # close the driver
     driver.close()
+
+    data = get_data(link)
+    data = clean_data(data)
+    save_to_csv("F", data)
 
 
 if __name__ == "__main__":
