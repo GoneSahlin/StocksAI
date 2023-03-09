@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.firefox.options import Options
 from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
-import time
 import requests
 import polars as pl
 from io import StringIO
@@ -34,7 +33,7 @@ def get_download_link(driver, ticker):
     driver.get(url)
 
     # wait for page to load
-    time.sleep(2)
+    driver.implicitly_wait(2)
 
     # close pop-up if it occurs
     try:
