@@ -7,20 +7,13 @@ import time
 
 
 def open_driver():
-    # install geckodriver
-    # path to geckodriver
+    # path to geckodriver and firefox
     driver_path = R"/usr/local/bin/geckodriver"    
-
-    # path to firefox executable
     firefox_path = R"/bin/firefox"    
 
-    # create options
+    # create options and service
     options = Options()
-    
-    # set binary location
     options.binary_location = firefox_path    
-
-    # create a service object and set executable_path to driver_path
     service = Service(executable_path=driver_path)
 
     # create a driver
