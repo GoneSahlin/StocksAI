@@ -7,7 +7,7 @@ import polars as pl
 from io import StringIO
 
 
-def open_driver():
+def open_driver() -> webdriver.Firefox:
     # path to geckodriver and firefox
     driver_path = R"/usr/local/bin/geckodriver"    
     firefox_path = R"/bin/firefox"    
@@ -25,7 +25,7 @@ def open_driver():
     return driver
 
 
-def get_download_link(driver, ticker):
+def get_download_link(driver: webdriver.Firefox, ticker):
     # url
     url = "https://finance.yahoo.com/quote/" + ticker + "/history"
 
@@ -33,7 +33,7 @@ def get_download_link(driver, ticker):
     driver.get(url)
 
     # wait for page to load
-    driver.implicitly_wait(2)
+    driver.implicitly_wait(1)
 
     # close pop-up if it occurs
     try:
@@ -81,7 +81,13 @@ def clean_data(data: str) -> pl.DataFrame:
 def save_to_csv(ticker, df: pl.DataFrame):
     filepath = "../data/" + ticker + ".csv"
     
-    df.write_csv(filepath)        
+    df.write_csv(filepath)
+
+
+def save_to_parquet(ticker, df: pl.DataFrame):
+    filepath = "../data/" + ticker + "_prices.parquet"
+
+    df.write_parquet(filepath)
 
 
 def main():
@@ -94,7 +100,7 @@ def main():
 
     data = get_data(link)
     data = clean_data(data)
-    save_to_csv("F", data)
+    save_to_parquet("F", data)
 
 
 if __name__ == "__main__":
