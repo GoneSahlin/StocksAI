@@ -1,3 +1,5 @@
+all: test lint
+
 .venv: pyproject.toml setup.cfg
 	python3 -m venv .venv
 	.venv/bin/pip install -e .[dev]
@@ -9,7 +11,7 @@ test: .venv
 
 .PHONY: lint
 lint: .venv
-	flake8 --exclude .venv
+	.venv/bin/flake8 --exclude .venv
 
 .PHONY: clean
 clean:
