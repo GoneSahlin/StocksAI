@@ -1,9 +1,9 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='collector',
+    name='stocksai',
     version='0.0.0',
-    packages=find_packages(include=['price_historical']),
+    packages=find_packages(include=['collector.price_historical']),
     install_requires=[
         'selenium',
         'requests',
