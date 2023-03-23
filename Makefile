@@ -1,11 +1,15 @@
-.venv: requirements.txt setup.py
+.venv: pyproject.toml setup.cfg
 	python3 -m venv .venv
-	.venv/bin/pip install -e .
+	.venv/bin/pip install -e .[dev]
 	touch .venv
 
 .PHONY: test
 test: .venv
-	python3 setup.py test
+	.venv/bin/pytest --rootdir collector
+
+.PHONY: lint
+lint: .venv
+	flake8 --exclude .venv
 
 .PHONY: clean
 clean:
