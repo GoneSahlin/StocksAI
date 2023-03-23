@@ -1,6 +1,7 @@
 import requests
 import polars as pl
 from io import StringIO
+import os
 
 
 def get_download_link(ticker):
@@ -26,28 +27,22 @@ def clean_data(data: str) -> pl.DataFrame:
     df = pl.read_csv(StringIO(data))
     df = df.drop(["Open","High","Low","Close"])
 
+    df = df.rename({"Adj Close": "Price"})
+
     return df
 
 
-def save_to_csv(ticker, df: pl.DataFrame):
-    filepath = "../data/" + ticker + ".csv"
-    
-    df.write_csv(filepath)
+def collect_price_historical(ticker):
+    link = get_download_link(ticker)
+    data = get_data(link)
+    df = clean_data(data)
 
-
-def save_to_parquet(ticker, df: pl.DataFrame):
-    filepath = "../data/" + ticker + "_prices.parquet"
-
+    filepath = os.path.join("data", ticker + "_prices.parquet")
     df.write_parquet(filepath)
 
 
 def main():
-    link = get_download_link("F")
-    # get_download(driver, "AAPL")
-
-    data = get_data(link)
-    data = clean_data(data)
-    save_to_parquet("F", data)
+    collect_price_historical("F")
 
 
 if __name__ == "__main__":
