@@ -45,12 +45,13 @@ def collect_revenue_historical(ticker):
     url = get_url(ticker)
     df = get_data(url)
 
-    filepath = os.path.join("data", ticker + "_revenues.parquet")
+    filepath = os.path.join("data", "revenues", ticker + "_revenues.parquet")
     df.write_parquet(filepath)
 
 
 def main():
     collect_revenue_historical("F")
+    collect_revenue_historical("AAPL")
 
 
 if __name__ == "__main__":

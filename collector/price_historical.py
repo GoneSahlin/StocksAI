@@ -37,12 +37,13 @@ def collect_price_historical(ticker):
     data = get_data(link)
     df = clean_data(data)
 
-    filepath = os.path.join("data", ticker + "_prices.csv")
+    filepath = os.path.join("data", "prices", ticker + "_prices.csv")
     df.write_csv(filepath)
 
 
 def main():
     collect_price_historical("F")
+    collect_price_historical("AAPL")
 
 
 if __name__ == "__main__":
