@@ -1,7 +1,7 @@
 from datetime import date
 import polars as pl
 
-import revenue_historical
+from collector import revenue_historical
 
 
 def test_get_url():

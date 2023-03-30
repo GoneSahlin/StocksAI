@@ -1,6 +1,6 @@
 import polars as pl
 
-import price_historical
+from collector import price_historical
 
 
 def test_get_download_link():

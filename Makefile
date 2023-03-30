@@ -7,7 +7,15 @@ all: test lint
 
 .PHONY: test
 test: .venv
-	.venv/bin/pytest --rootdir collector
+	.venv/bin/pytest
+
+.PHONY: test-collector
+test-collector: .venv
+	.venv/bin/pytest collector/
+
+.PHONY: test-model
+test-model: .venv
+	.venv/bin/pytest model/
 
 .PHONY: lint
 lint: .venv

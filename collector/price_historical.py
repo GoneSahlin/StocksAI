@@ -37,8 +37,8 @@ def collect_price_historical(ticker):
     data = get_data(link)
     df = clean_data(data)
 
-    filepath = os.path.join("data", ticker + "_prices.parquet")
-    df.write_parquet(filepath)
+    filepath = os.path.join("data", ticker + "_prices.csv")
+    df.write_csv(filepath)
 
 
 def main():
