@@ -1,11 +1,11 @@
 import os
 import polars as pl
 
-import utils
+from model import utils
 
 
 class DatasetGenerator():
-    def __init__(self, train_percent, val_percent):
+    def __init__(self, train_percent=.7, val_percent=.2):
         self.train_percent = train_percent
         self.val_percent = val_percent
 
@@ -26,6 +26,10 @@ class DatasetGenerator():
 
     def setup_data(self):
         for df in self.dfs:
+            # drop columns
+            df.drop_in_place('Date')
+
+            # split data
             train_df, val_df, test_df = utils.split_train_val_test(df, self.train_percent, self.val_percent)
 
             # normalize data
@@ -44,6 +48,7 @@ class DatasetGenerator():
                 (pl.col(label) - train_mean[label]) / train_std[label] for label in train_mean.columns
             ])
 
+            # store dfs
             self.train_dfs.append(train_df)
             self.val_dfs.append(val_df)
             self.test_dfs.append(test_df)
