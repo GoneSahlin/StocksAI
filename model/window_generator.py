@@ -45,7 +45,7 @@ class WindowGenerator():
             labels = tf.stack(
                 [labels[:, :, self.column_indices[name]] for name in self.label_columns],
                 axis=-1)
-            
+
         inputs.set_shape([None, self.input_width, None])
         labels.set_shape([None, self.input_width, None])
 
@@ -85,7 +85,8 @@ class WindowGenerator():
             plt.xlabel('Time [days]')
 
     def make_dataset(self, data):
-        data = np.array(data, dtype=np.float32)
+        data = data.to_numpy()
+
         ds = tf.keras.utils.timeseries_dataset_from_array(
             data=data,
             targets=None,
