@@ -1,42 +1,42 @@
-import polars as pl
 import tensorflow as tf
 
-from window_generator import WindowGenerator
-
-
-def load_data():
-    prices_df = pl.read_parquet("data/F_prices.parquet")
-
-    return prices_df
+import utils
+from dataset_generator import DatasetGenerator
 
 
 def train():
-    df = load_data()
+    dfs = utils.load_data()
 
-    # split data
-    n = len(df)
-    train_df = df[0:int(n*0.7)]
-    val_df = df[int(n*0.7):int(n*0.9)]
-    test_df = df[int(n*0.9):]
+    train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
 
+    dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs)
 
-    # TODO normalize data
+    dataset_generator.make_windows(5, 5, 1, ['Price'])
+    dataset_generator.make_datasets()
 
+    lstm_model = tf.keras.models.Sequential([
+        tf.keras.layers.LSTM(32, return_sequences=True),
+        tf.keras.layers.Dense(units=1)
+    ])
 
-    # create windows
-    # window = WindowGenerator(input_width=)
+    lstm_model.compile(loss=tf.keras.losses.MeanSquaredError(),
+                   optimizer=tf.keras.optimizers.Adam(),
+                   metrics=[tf.keras.metrics.MeanAbsoluteError()])
+    
+    early_stopping = tf.keras.callbacks.EarlyStopping(monitor='val_loss',
+                                                  patience=2,
+                                                  mode='min')
 
-    # lstm_model = tf.keras.models.Sequential([
-    # # Shape [batch, time, features] => [batch, time, lstm_units]
-    # tf.keras.layers.LSTM(32, return_sequences=True),
-    # # Shape => [batch, time, features]
-    # tf.keras.layers.Dense(units=1)])
+    history = lstm_model.fit(dataset_generator.train, epochs=20,
+                         validation_data=dataset_generator.val,
+                         callbacks=[])
 
-    # optimizer = tf.keras.optimizers.SGD(learning_rate=1e-8, momentum=0.9)
-    # lstm_model.compile(loss=tf.keras.losses.Huber(),
-    #           optimizer=optimizer,
-    #           metrics=["mae"])
+    val_performance_lstm = lstm_model.evaluate(dataset_generator.val)
+    performance_lstm = lstm_model.evaluate(dataset_generator.test, verbose=0)
 
+    print(lstm_model.metrics_names)
+    print(val_performance_lstm)
+    print(performance_lstm)
 
 
 if __name__ == '__main__':
