@@ -2,53 +2,36 @@ import os
 import polars as pl
 
 from model import utils
+from model.window_generator import WindowGenerator
 
 
 class DatasetGenerator():
-    def __init__(self, train_percent=.7, val_percent=.2):
-        self.train_percent = train_percent
-        self.val_percent = val_percent
+    def __init__(self, train_dfs, val_dfs, test_dfs):
+        self.train_dfs = train_dfs
+        self.val_dfs = val_dfs
+        self.test_dfs = test_dfs
 
-        self.dfs = []
-        self.train_dfs = []
-        self.val_dfs = []
-        self.test_dfs = []
+        self.num_dfs = len(train_dfs)
 
-    def load_data(self):
-        filenames = os.listdir(os.path.join("data", "prices"))
-        
-        for filename in filenames:
-            filepath = os.path.join("data", "prices", filename)
+        self.windows = []
 
-            df = pl.read_csv(filepath)
+    def make_windows(self, input_width, label_width, shift, label_columns):
+        for i in range(self.num_dfs):
+            window = WindowGenerator(input_width, label_width, shift, label_columns=label_columns, train_df=self.train_dfs[i], val_df=self.val_dfs[i], test_df=self.test_dfs[i])
+            
+            self.windows.append(window)
 
-            self.dfs.append(df)
+    def make_datasets(self):
+        # first df
+        self.train = self.windows[0].train
+        self.val = self.windows[0].val
+        self.test = self.windows[0].test
 
-    def setup_data(self):
-        for df in self.dfs:
-            # drop columns
-            df.drop_in_place('Date')
+        for i in range(1, self.num_dfs):
+            train = self.windows[i].train
+            val = self.windows[i].val
+            test = self.windows[i].test
 
-            # split data
-            train_df, val_df, test_df = utils.split_train_val_test(df, self.train_percent, self.val_percent)
-
-            # normalize data
-            train_mean = train_df.mean()
-            train_std = train_df.std()
-
-            train_df = train_df.with_columns([
-                (pl.col(label) - train_mean[label]) / train_std[label] for label in train_mean.columns
-            ])
-
-            val_df = val_df.with_columns([
-                (pl.col(label) - train_mean[label]) / train_std[label] for label in train_mean.columns
-            ])
-
-            test_df = test_df.with_columns([
-                (pl.col(label) - train_mean[label]) / train_std[label] for label in train_mean.columns
-            ])
-
-            # store dfs
-            self.train_dfs.append(train_df)
-            self.val_dfs.append(val_df)
-            self.test_dfs.append(test_df)
+            self.train = self.train.concatenate(train)
+            self.val = self.val.concatenate(val)
+            self.test = self.test.concatenate(test)
