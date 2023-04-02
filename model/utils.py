@@ -74,7 +74,19 @@ def setup_data(dfs, train_percent, val_percent):
     return train_dfs, val_dfs, test_dfs
 
 
-def join_revenue(price_df: pl.DataFrame, revenue_df: pl.DataFrame):
+def clean_price_df(price_df: pl.DataFrame):
+    price_df = price_df.with_columns(pl.col("Date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+
+    return price_df
+
+
+def clean_revenue_df(revenue_df: pl.DataFrame):
+    revenue_df = revenue_df.with_columns(pl.col("end_date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+
+    return revenue_df
+
+
+def join_revenue_df(price_df: pl.DataFrame, revenue_df: pl.DataFrame):
     revenue_df = revenue_df.sort(by="end_date")
     df = price_df.join_asof(revenue_df, left_on="Date", right_on="end_date", strategy="backward")
 

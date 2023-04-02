@@ -5,8 +5,16 @@ from dataset_generator import DatasetGenerator
 
 
 def train():
-    prices_dfs = utils.load_data('prices')
-    revenues_dfs = utils.load_data('revenues')
+    price_dfs = utils.load_data('prices')
+    revenue_dfs = utils.load_data('revenues')
+
+    dfs = []
+    for (price_df, revenue_df) in zip(price_dfs, revenue_dfs):
+        df = utils.join_revenue_df(price_df, revenue_df)
+        dfs.append(df)
+
+    # dfs = [utils.join_revenue(price_df, revenue_df) for (price_df, revenue_df) in zip(prices_dfs, revenues_dfs)]
+
 
     train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
 

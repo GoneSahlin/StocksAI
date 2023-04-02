@@ -1,5 +1,5 @@
 import polars as pl
-from datetime import datetime
+import datetime
 
 from model import utils
 from model.dataset_generator import DatasetGenerator
@@ -67,15 +67,29 @@ def test_setup_data():
     assert test_dfs
 
 
-def test_join_revenue():
+def test_clean_price_df():
     price_df = create_example_price_df()
-    price_df = price_df.with_columns(pl.col("Date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+    price_df = utils.clean_price_df(price_df)
+
+    assert type(price_df[0,0]) == datetime.date
+
+
+def test_clean_revenue_df():
+    revenue_df = create_example_revenue_df()
+    revenue_df = utils.clean_revenue_df(revenue_df)
+
+    assert type(revenue_df[0,0]) == datetime.date
+
+
+def test_join_revenue_df():
+    price_df = create_example_price_df()
+    price_df = utils.clean_price_df(price_df)
 
     revenue_df = create_example_revenue_df()
-    revenue_df = revenue_df.with_columns(pl.col("end_date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+    revenue_df = utils.clean_revenue_df(revenue_df)
 
-    df = utils.join_revenue(price_df, revenue_df)
+    df = utils.join_revenue_df(price_df, revenue_df)
     
-    assert df.filter(pl.col("Date") == datetime(2022, 5, 6)).get_column("revenue")[0] == 34476000000
-    assert df.filter(pl.col("Date") == datetime(2022, 12, 19)).get_column("revenue")[0] == 39392000000
+    assert df.filter(pl.col("Date") == datetime.datetime(2022, 5, 6)).get_column("revenue")[0] == 34476000000
+    assert df.filter(pl.col("Date") == datetime.datetime(2022, 12, 19)).get_column("revenue")[0] == 39392000000
 
