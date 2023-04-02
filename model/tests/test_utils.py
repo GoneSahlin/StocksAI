@@ -1,6 +1,7 @@
 import polars as pl
 
 from model import utils
+from model.dataset_generator import DatasetGenerator
 
 
 def create_df():
@@ -18,6 +19,20 @@ def create_dfs():
     return dfs
 
 
+def create_example_price_df():
+    price_df = pl.DataFrame({"Date": ["2022-05-06", "2022-06-01", "2022-07-12", "2022-08-11", "2022-09-15", "2022-10-10", "2022-11-10", "2022-12-19", "2023-01-04", "2023-02-21", "2023-03-20"],
+                             "Price": [13.098385, 12.490015, 10.655688, 14.737184, 13.862077, 10.575768, 13.201092, 10.996746, 11.29777, 12.2, 11.18],
+                             "Volume": [66622200, 50726200, 58414500, 61567000, 61377000, 115548900, 75638500, 88062500, 53429700, 77724200, 74975100]})
+
+    return price_df
+
+def create_example_revenue_df():
+    revenue_df = pl.DataFrame({"end_date": ["2022-12-31", "2022-09-30", "2022-06-30", "2022-03-31", "2021-12-31"],
+                               "revenue": [43999000000, 39392000000, 40190000000, 34476000000, 37678000000]})
+
+    return revenue_df
+
+
 def test_split_train_val_test():
     df = create_df()
 
@@ -33,3 +48,32 @@ def test_split_dfs():
     assert len(train_dfs) == len(val_dfs) == len(test_dfs) == 2
     for i in range(len(dfs)):
         assert len(train_dfs[i]) + len(val_dfs[i]) + len(test_dfs[i]) == len(dfs[i])
+
+
+def test_load_data():
+    dfs = utils.load_data('prices')
+
+    assert dfs
+
+
+def test_setup_data():
+    dfs = utils.load_data('prices')
+
+    train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
+
+    assert train_dfs
+    assert val_dfs
+    assert test_dfs
+
+
+def test_join_revenue():
+    price_df = create_example_price_df()
+    price_df = price_df.with_columns(pl.col("Date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+
+    revenue_df = create_example_revenue_df()
+    revenue_df = revenue_df.with_columns(pl.col("end_date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+
+    df = utils.join_revenue(price_df, revenue_df)
+    print(price_df)
+    print(df)
+    

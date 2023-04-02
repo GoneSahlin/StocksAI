@@ -25,12 +25,12 @@ def split_dfs(dfs, train_percent, val_percent):
     return train_dfs, val_dfs, test_dfs
 
 
-def load_data():
-    filenames = os.listdir(os.path.join("data", "prices"))
+def load_data(folder):
+    filenames = os.listdir(os.path.join("data", folder))
     
     dfs = []
     for filename in filenames:
-        filepath = os.path.join("data", "prices", filename)
+        filepath = os.path.join("data", folder, filename)
 
         df = pl.read_csv(filepath)
 
@@ -72,3 +72,10 @@ def setup_data(dfs, train_percent, val_percent):
         test_dfs.append(test_df)
 
     return train_dfs, val_dfs, test_dfs
+
+
+def join_revenue(price_df: pl.DataFrame, revenue_df: pl.DataFrame):
+    revenue_df = revenue_df.sort(by="end_date")
+    df = price_df.join_asof(revenue_df, left_on="Date", right_on="end_date", strategy="backward")
+
+    return df

@@ -4,24 +4,6 @@ from model.dataset_generator import DatasetGenerator
 from model import utils
 
 
-# def test_load_data():
-#     dataset_generator = DatasetGenerator()
-
-#     dataset_generator.load_data()
-
-#     assert dataset_generator.dfs
-
-
-# def test_setup_data():
-#     dataset_generator = DatasetGenerator()
-#     dataset_generator.load_data()
-
-#     dataset_generator.setup_data()
-
-#     assert dataset_generator.train_dfs
-#     assert dataset_generator.val_dfs
-#     assert dataset_generator.test_dfs
-
 def create_dfs():
     df1 = pl.DataFrame({'x': range(100), 'y': range(100, 200)})
     df2 = pl.DataFrame({'x': range(200, 300), 'y': range(300, 400)})
