@@ -5,7 +5,8 @@ from dataset_generator import DatasetGenerator
 
 
 def train():
-    dfs = utils.load_data('prices')
+    prices_dfs = utils.load_data('prices')
+    revenues_dfs = utils.load_data('revenues')
 
     train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
 

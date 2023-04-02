@@ -1,4 +1,5 @@
 import polars as pl
+from datetime import datetime
 
 from model import utils
 from model.dataset_generator import DatasetGenerator
@@ -74,6 +75,7 @@ def test_join_revenue():
     revenue_df = revenue_df.with_columns(pl.col("end_date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
 
     df = utils.join_revenue(price_df, revenue_df)
-    print(price_df)
-    print(df)
     
+    assert df.filter(pl.col("Date") == datetime(2022, 5, 6)).get_column("revenue")[0] == 34476000000
+    assert df.filter(pl.col("Date") == datetime(2022, 12, 19)).get_column("revenue")[0] == 39392000000
+
