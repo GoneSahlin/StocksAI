@@ -71,21 +71,21 @@ def setup_data(dfs, train_percent, val_percent):
     return train_dfs, val_dfs, test_dfs
 
 
-def clean_price_df(price_df: pl.DataFrame):
-    price_df = price_df.with_columns(pl.col("Date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+def clean_price_df(df: pl.DataFrame):
+    df = df.with_columns(pl.col("Date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
 
-    return price_df
-
-
-def clean_revenue_df(revenue_df: pl.DataFrame):
-    revenue_df = revenue_df.with_columns(pl.col("end_date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
-
-    return revenue_df
+    return df
 
 
-def join_revenue_df(price_df: pl.DataFrame, revenue_df: pl.DataFrame):
-    revenue_df = revenue_df.sort(by="end_date")
-    earliest_date = revenue_df.select("end_date").min(0)[0,0]
-    df = price_df.filter(pl.col("Date") >= earliest_date).join_asof(revenue_df, left_on="Date", right_on="end_date", strategy="backward")
+def clean_quarterly_financials_df(df: pl.DataFrame):
+    df = df.with_columns(pl.col("end_date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+
+    return df
+
+
+def join_quarterly_financials_df(price_df: pl.DataFrame, quarterly_financials_df: pl.DataFrame):
+    quarterly_financials_df = quarterly_financials_df.sort(by="end_date")
+    earliest_date = quarterly_financials_df.select("end_date").min(0)[0,0]
+    df = price_df.filter(pl.col("Date") >= earliest_date).join_asof(quarterly_financials_df, left_on="Date", right_on="end_date", strategy="backward")
 
     return df
