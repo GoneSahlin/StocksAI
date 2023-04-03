@@ -4,13 +4,11 @@ import polars as pl
 from datetime import date
 import os
 
+from collector import utils
+
 
 def get_url(ticker):
-    url = "https://www.macrotrends.net/stocks/charts/" + ticker
-
-    # requesting adds the name of the company to the end of the url
-    response = requests.get(url)
-    url = response.url
+    url = utils.get_macrotrends_url(ticker)
 
     url += "revenue"
 
