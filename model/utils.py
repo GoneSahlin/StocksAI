@@ -44,9 +44,6 @@ def setup_data(dfs, train_percent, val_percent):
     val_dfs = []
     test_dfs = []
     for df in dfs:
-        # drop columns
-        df.drop_in_place('Date')
-
         # split data
         train_df, val_df, test_df = split_train_val_test(df, train_percent, val_percent)
 
@@ -88,6 +85,7 @@ def clean_revenue_df(revenue_df: pl.DataFrame):
 
 def join_revenue_df(price_df: pl.DataFrame, revenue_df: pl.DataFrame):
     revenue_df = revenue_df.sort(by="end_date")
-    df = price_df.join_asof(revenue_df, left_on="Date", right_on="end_date", strategy="backward")
+    earliest_date = revenue_df.select("end_date").min(0)[0,0]
+    df = price_df.filter(pl.col("Date") >= earliest_date).join_asof(revenue_df, left_on="Date", right_on="end_date", strategy="backward")
 
     return df

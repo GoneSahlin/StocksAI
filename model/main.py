@@ -10,17 +10,20 @@ def train():
 
     dfs = []
     for (price_df, revenue_df) in zip(price_dfs, revenue_dfs):
+        price_df = utils.clean_price_df(price_df)
+        revenue_df = utils.clean_revenue_df(revenue_df)
+
         df = utils.join_revenue_df(price_df, revenue_df)
+
+        df = df.drop(["Date", "end_date"])
+
         dfs.append(df)
-
-    # dfs = [utils.join_revenue(price_df, revenue_df) for (price_df, revenue_df) in zip(prices_dfs, revenues_dfs)]
-
 
     train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
 
     dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs)
 
-    dataset_generator.make_windows(5, 5, 1, ['Price'])
+    dataset_generator.make_windows(5, 5, 5, ['Price'])
     dataset_generator.make_datasets()
 
     lstm_model = tf.keras.models.Sequential([
@@ -46,6 +49,8 @@ def train():
     print(lstm_model.metrics_names)
     print(val_performance_lstm)
     print(performance_lstm)
+
+    dataset_generator.windows[0].plot(lstm_model)
 
 
 if __name__ == '__main__':

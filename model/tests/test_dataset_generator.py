@@ -35,21 +35,3 @@ def test_make_dataset():
     assert dataset_generator.train
     assert dataset_generator.val
     assert dataset_generator.test
-
-    # assert len(dataset_generator.train[0][0]) == 65
-    # assert len(dataset_generator.train[1][0]) == 65
-    # assert len(dataset_generator.train[1][0]) == 30
-    # assert len(dataset_generator.train[0])
-
-
-    # # assert len(dataset_generator.train.take(1)) == 62
-    # things = 0
-    # for item in dataset_generator.train:
-    #     # print(item)
-    #     # print(len(item))
-    #     for thing in item:
-    #         things += len(thing)
-
-    # print(things)
-
-

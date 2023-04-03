@@ -60,6 +60,9 @@ def test_load_data():
 def test_setup_data():
     dfs = utils.load_data('prices')
 
+    for df in dfs:
+        df.drop_in_place("Date")
+
     train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
 
     assert train_dfs
