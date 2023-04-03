@@ -25,12 +25,12 @@ def split_dfs(dfs, train_percent, val_percent):
     return train_dfs, val_dfs, test_dfs
 
 
-def load_data():
-    filenames = os.listdir(os.path.join("data", "prices"))
+def load_data(folder):
+    filenames = os.listdir(os.path.join("data", folder))
     
     dfs = []
     for filename in filenames:
-        filepath = os.path.join("data", "prices", filename)
+        filepath = os.path.join("data", folder, filename)
 
         df = pl.read_csv(filepath)
 
@@ -44,9 +44,6 @@ def setup_data(dfs, train_percent, val_percent):
     val_dfs = []
     test_dfs = []
     for df in dfs:
-        # drop columns
-        df.drop_in_place('Date')
-
         # split data
         train_df, val_df, test_df = split_train_val_test(df, train_percent, val_percent)
 
@@ -72,3 +69,23 @@ def setup_data(dfs, train_percent, val_percent):
         test_dfs.append(test_df)
 
     return train_dfs, val_dfs, test_dfs
+
+
+def clean_price_df(price_df: pl.DataFrame):
+    price_df = price_df.with_columns(pl.col("Date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+
+    return price_df
+
+
+def clean_revenue_df(revenue_df: pl.DataFrame):
+    revenue_df = revenue_df.with_columns(pl.col("end_date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+
+    return revenue_df
+
+
+def join_revenue_df(price_df: pl.DataFrame, revenue_df: pl.DataFrame):
+    revenue_df = revenue_df.sort(by="end_date")
+    earliest_date = revenue_df.select("end_date").min(0)[0,0]
+    df = price_df.filter(pl.col("Date") >= earliest_date).join_asof(revenue_df, left_on="Date", right_on="end_date", strategy="backward")
+
+    return df

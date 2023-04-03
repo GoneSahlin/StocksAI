@@ -45,8 +45,8 @@ def collect_revenue_historical(ticker):
     url = get_url(ticker)
     df = get_data(url)
 
-    filepath = os.path.join("data", "revenues", ticker + "_revenues.parquet")
-    df.write_parquet(filepath)
+    filepath = os.path.join("data", "revenues", ticker + "_revenues.csv")
+    df.write_csv(filepath)
 
 
 def main():

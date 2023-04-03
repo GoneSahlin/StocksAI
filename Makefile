@@ -17,6 +17,10 @@ test-collector: .venv
 test-model: .venv
 	.venv/bin/pytest model/
 
+.PHONY: train
+train: .venv
+	.venv/bin/python3 model/train.py
+
 .PHONY: lint
 lint: .venv
 	.venv/bin/flake8 --exclude .venv

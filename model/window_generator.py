@@ -84,6 +84,8 @@ class WindowGenerator():
 
             plt.xlabel('Time [days]')
 
+            plt.savefig("/tmp/plot.png")
+
     def make_dataset(self, data):
         data = data.to_numpy()
 
