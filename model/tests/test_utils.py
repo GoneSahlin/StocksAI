@@ -77,22 +77,21 @@ def test_clean_price_df():
     assert type(price_df[0,0]) == datetime.date
 
 
-def test_clean_revenue_df():
+def test_clean_quarterly_financials_df():
     revenue_df = create_example_revenue_df()
-    revenue_df = utils.clean_revenue_df(revenue_df)
+    revenue_df = utils.clean_quarterly_financials_df(revenue_df)
 
     assert type(revenue_df[0,0]) == datetime.date
 
 
-def test_join_revenue_df():
+def test_join_quarterly_financials_df():
     price_df = create_example_price_df()
     price_df = utils.clean_price_df(price_df)
 
     revenue_df = create_example_revenue_df()
-    revenue_df = utils.clean_revenue_df(revenue_df)
+    revenue_df = utils.clean_quarterly_financials_df(revenue_df)
 
-    df = utils.join_revenue_df(price_df, revenue_df)
+    df = utils.join_quarterly_financials_df(price_df, revenue_df)
     
     assert df.filter(pl.col("Date") == datetime.datetime(2022, 5, 6)).get_column("revenue")[0] == 34476000000
     assert df.filter(pl.col("Date") == datetime.datetime(2022, 12, 19)).get_column("revenue")[0] == 39392000000
-

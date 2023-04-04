@@ -6,14 +6,14 @@ from dataset_generator import DatasetGenerator
 
 def train():
     price_dfs = utils.load_data('prices')
-    revenue_dfs = utils.load_data('revenues')
+    quarterly_financials_dfs = utils.load_data('quarterly_financials')
 
     dfs = []
-    for (price_df, revenue_df) in zip(price_dfs, revenue_dfs):
+    for (price_df, quarterly_financials_df) in zip(price_dfs, quarterly_financials_dfs):
         price_df = utils.clean_price_df(price_df)
-        revenue_df = utils.clean_revenue_df(revenue_df)
+        quarterly_financials_df = utils.clean_quarterly_financials_df(quarterly_financials_df)
 
-        df = utils.join_revenue_df(price_df, revenue_df)
+        df = utils.join_quarterly_financials_df(price_df, quarterly_financials_df)
 
         df = df.drop(["Date", "end_date"])
 
