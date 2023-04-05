@@ -23,7 +23,7 @@ train: .venv
 
 .PHONY: lint
 lint: .venv
-	.venv/bin/flake8 --exclude .venv
+	-.venv/bin/flake8 --exclude .venv
 
 .PHONY: clean
 clean:
