@@ -1,5 +1,7 @@
 import polars as pl
 import datetime
+import os
+import pytest
 
 from model import utils
 from model.dataset_generator import DatasetGenerator
@@ -52,12 +54,18 @@ def test_split_dfs():
 
 
 def test_load_data():
+    if not os.path.exists("data"):
+        pytest.skip("Data folder does not exist")
+
     dfs = utils.load_data('prices')
 
     assert dfs
 
 
 def test_setup_data():
+    if not os.path.exists("data"):
+        pytest.skip("Data folder does not exist")
+
     dfs = utils.load_data('prices')
 
     for df in dfs:
