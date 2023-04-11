@@ -19,7 +19,7 @@ def test_make_windows():
     train_dfs, val_dfs, test_dfs = utils.split_dfs(dfs, .7, .2)
     dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs)
 
-    dataset_generator.make_windows(5, 5, 1, ['x'])
+    dataset_generator.make_windows(5, 6, 1, ['x'])
     
     assert len(dataset_generator.windows) == 3
 

@@ -47,7 +47,7 @@ class WindowGenerator():
                 axis=-1)
 
         inputs.set_shape([None, self.input_width, None])
-        labels.set_shape([None, self.input_width, None])
+        labels.set_shape([None, self.label_width, None])
 
         return inputs, labels
     
