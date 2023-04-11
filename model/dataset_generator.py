@@ -6,22 +6,29 @@ from model.window_generator import WindowGenerator
 
 
 class DatasetGenerator():
-    def __init__(self, train_dfs, val_dfs, test_dfs):
+    def __init__(self, train_dfs, val_dfs, test_dfs, input_width, label_width, shift, label_columns):
         self.train_dfs = train_dfs
         self.val_dfs = val_dfs
         self.test_dfs = test_dfs
+        self.input_width = input_width
+        self.label_width = label_width
+        self.shift = shift
+        self.label_columns = label_columns
 
         self.num_dfs = len(train_dfs)
 
         self.windows = []
 
-    def make_windows(self, input_width, label_width, shift, label_columns):
+        self._make_windows()
+        self._make_datasets()
+
+    def _make_windows(self):
         for i in range(self.num_dfs):
-            window = WindowGenerator(input_width, label_width, shift, label_columns=label_columns, train_df=self.train_dfs[i], val_df=self.val_dfs[i], test_df=self.test_dfs[i])
+            window = WindowGenerator(self.input_width, self.label_width, self.shift, label_columns=self.label_columns, train_df=self.train_dfs[i], val_df=self.val_dfs[i], test_df=self.test_dfs[i])
             
             self.windows.append(window)
 
-    def make_datasets(self):
+    def _make_datasets(self):
         # first df
         self.train = self.windows[0].train
         self.val = self.windows[0].val

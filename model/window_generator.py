@@ -47,7 +47,7 @@ class WindowGenerator():
                 axis=-1)
 
         inputs.set_shape([None, self.input_width, None])
-        labels.set_shape([None, self.input_width, None])
+        labels.set_shape([None, self.label_width, None])
 
         return inputs, labels
     
@@ -84,7 +84,7 @@ class WindowGenerator():
 
             plt.xlabel('Time [days]')
 
-            plt.savefig("/tmp/plot.png")
+            plt.savefig("plot.png")
 
     def make_dataset(self, data):
         data = data.to_numpy()

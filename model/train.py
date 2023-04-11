@@ -21,11 +21,8 @@ def train():
 
     train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
 
-    dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs)
-
-    dataset_generator.make_windows(5, 5, 5, ['Price'])
-    dataset_generator.make_datasets()
-
+    dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs,  10, 10, 1, ['Price'])
+    
     lstm_model = tf.keras.models.Sequential([
         tf.keras.layers.LSTM(32, return_sequences=True),
         tf.keras.layers.Dense(units=1)
@@ -41,7 +38,7 @@ def train():
 
     history = lstm_model.fit(dataset_generator.train, epochs=20,
                          validation_data=dataset_generator.val,
-                         callbacks=[])
+                         callbacks=[early_stopping])
 
     val_performance_lstm = lstm_model.evaluate(dataset_generator.val)
     performance_lstm = lstm_model.evaluate(dataset_generator.test, verbose=0)
