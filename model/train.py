@@ -23,11 +23,11 @@ def train():
 
     dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs)
 
-    dataset_generator.make_windows(10, 1, 1, ['Price'])
+    dataset_generator.make_windows(5, 5, 5, ['Price'])
     dataset_generator.make_datasets()
 
     lstm_model = tf.keras.models.Sequential([
-        tf.keras.layers.LSTM(32, return_sequences=False),
+        tf.keras.layers.LSTM(32, return_sequences=True),
         tf.keras.layers.Dense(units=1)
     ])
 
@@ -50,7 +50,7 @@ def train():
     print(val_performance_lstm)
     print(performance_lstm)
 
-    # dataset_generator.windows[0].plot(lstm_model)
+    dataset_generator.windows[0].plot(lstm_model)
 
 
 if __name__ == '__main__':

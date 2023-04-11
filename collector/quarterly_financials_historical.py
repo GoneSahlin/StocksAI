@@ -29,7 +29,11 @@ def get_macrotrends_data(url, value_name, url_extension, unit_multiplier=1_000_0
             if isinstance(child, Tag):
                 end_date = date.fromisoformat(child.td.text)
                 value_str: str = child.contents[3].text
-                value = value_dtype(value_str.replace("$", "").replace(",", "")) * unit_multiplier
+                value_str = value_str.replace("$", "").replace(",", "")
+                if value_str != '':
+                    value = value_dtype(value_str) * unit_multiplier
+                else:
+                    value = 0
 
                 end_dates.append(end_date)
                 values.append(value)
