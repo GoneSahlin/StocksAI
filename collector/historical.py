@@ -2,7 +2,7 @@ from collector import price_historical, quarterly_financials_historical
 
 
 def main():
-    ticker = 'TSLA'
+    ticker = 'NVDA'
     price_historical.collect_price_historical(ticker)
     quarterly_financials_historical.collect_quarterly_historical(ticker)
 
