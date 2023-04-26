@@ -1,7 +1,7 @@
 import polars as pl
 from datetime import date
 
-from collector import quarterly_financials_historical
+from src import quarterly_financials_historical
 
 def test_get_macrotrends_url():
     url = quarterly_financials_historical.get_macrotrends_url('F')

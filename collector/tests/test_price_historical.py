@@ -1,6 +1,6 @@
 import polars as pl
 
-from collector import price_historical
+from src import price_historical
 
 
 def test_get_download_link():
@@ -26,4 +26,4 @@ def test_clean_data():
     df = price_historical.clean_data(data)
 
     assert type(df) == pl.DataFrame
-    assert df.columns == ['Date', 'Price', 'Volume']
+    assert df.columns == ['Date', 'Open', 'High', 'Low', 'Close', 'Adj Close', 'Volume']
