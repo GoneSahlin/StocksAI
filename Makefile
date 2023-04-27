@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
-VENV = "collector/.collector-venv"
-CONDA_ENV_NAME ?= "model/stocksai-model-env"
+VENV = collector/.collector-venv
+CONDA_ENV_NAME ?= model/stocksai-model-env
 ACTIVATE_ENV = source ~/miniconda3/bin/activate ./$(CONDA_ENV_NAME)
 
 all: test lint
@@ -66,3 +66,4 @@ clean:
 	rm -rf .eggs
 	rm -rf collector/stocksai_collector.egg-info
 	rm -rf geckodriver.log
+	rm -rf collector/.pytest_cache

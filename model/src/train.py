@@ -24,7 +24,7 @@ def train():
     wide_window = DatasetGenerator(train_dfs, val_dfs, test_dfs,  10, 10, 1, ['Adj Close'])
 
     lstm_model = tf.keras.models.Sequential([
-        tf.keras.layers.LSTM(32, return_sequences=True),
+        tf.keras.layers.LSTM(4, return_sequences=True),
         tf.keras.layers.Dense(units=1)
     ])
 
