@@ -72,13 +72,15 @@ def setup_data(dfs, train_percent, val_percent):
 
 
 def clean_price_df(df: pl.DataFrame):
-    df = df.with_columns(pl.col("Date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+    df = df.with_columns(pl.col("Date").str.strptime(pl.Date, format="%Y-%m-%d"))
+
+    df = df.with_columns([(pl.col(label) / pl.col(label).shift()) for label in df.columns[1:]])
 
     return df
 
 
 def clean_quarterly_financials_df(df: pl.DataFrame):
-    df = df.with_columns(pl.col("end_date").str.strptime(pl.Date, fmt="%Y-%m-%d"))
+    df = df.with_columns(pl.col("end_date").str.strptime(pl.Date, format="%Y-%m-%d"))
 
     return df
 

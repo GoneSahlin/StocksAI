@@ -43,7 +43,7 @@ def collect_price_historical(ticker):
 
 def main():
     collect_price_historical("F")
-    collect_price_historical("AAPL")
+    # collect_price_historical("AAPL")
 
 
 if __name__ == "__main__":

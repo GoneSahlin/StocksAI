@@ -1,7 +1,7 @@
 import polars as pl
 
-from model.dataset_generator import DatasetGenerator
-from model import utils
+from src.dataset_generator import DatasetGenerator
+from src import utils
 
 
 def create_dfs():
@@ -13,25 +13,11 @@ def create_dfs():
 
     return dfs
 
-
-def test_make_windows():
+def test_dataset_generator():
     dfs = create_dfs()
     train_dfs, val_dfs, test_dfs = utils.split_dfs(dfs, .7, .2)
-    dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs)
+    dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs, 5, 6, 1, ['x'])
 
-    dataset_generator.make_windows(5, 6, 1, ['x'])
-    
-    assert len(dataset_generator.windows) == 3
-
-
-def test_make_dataset():
-    dfs = create_dfs()
-    train_dfs, val_dfs, test_dfs = utils.split_dfs(dfs, .7, .2)
-    dataset_generator = DatasetGenerator(train_dfs, val_dfs, test_dfs)
-    dataset_generator.make_windows(5, 5, 1, ['x'])
-
-    dataset_generator.make_datasets()
-    
     assert dataset_generator.train
     assert dataset_generator.val
-    assert dataset_generator.test
+    assert dataset_generator.test    

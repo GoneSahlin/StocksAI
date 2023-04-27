@@ -50,6 +50,10 @@ $(CONDA_ENV_NAME): model/pyproject.toml model/setup.cfg
 	mkdir -p ./$(CONDA_ENV_NAME)/lib/nvvm/libdevice &&\
 	cp ./$(CONDA_ENV_NAME)/lib/libdevice.10.bc ./$(CONDA_ENV_NAME)/lib/nvvm/libdevice/
 
+.PHONY: test-model
+test-model:
+	$(ACTIVATE_ENV) && pytest model -s
+
 .PHONY: train
 train: $(CONDA_ENV_NAME)
 	$(ACTIVATE_ENV) && python model/src/train.py
