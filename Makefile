@@ -1,7 +1,7 @@
 SHELL := /bin/bash
 
 VENV = "collector/.collector-venv"
-CONDA_ENV_NAME ?= "stocksai-model"
+CONDA_ENV_NAME ?= "model/stocksai-model-env"
 ACTIVATE_ENV = source ~/miniconda3/bin/activate ./$(CONDA_ENV_NAME)
 
 all: test lint
