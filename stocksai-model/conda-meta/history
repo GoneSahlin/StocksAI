@@ -1,0 +1,52 @@
+==> 2023-04-26 22:21:31 <==
+# cmd: /home/zach/miniconda3/condabin/conda create -p stocksai-model --copy -y python=3.9
+# conda version: 23.3.1
++defaults/linux-64::_libgcc_mutex-0.1-main
++defaults/linux-64::_openmp_mutex-5.1-1_gnu
++defaults/linux-64::ca-certificates-2023.01.10-h06a4308_0
++defaults/linux-64::ld_impl_linux-64-2.38-h1181459_1
++defaults/linux-64::libffi-3.4.2-h6a678d5_6
++defaults/linux-64::libgcc-ng-11.2.0-h1234567_1
++defaults/linux-64::libgomp-11.2.0-h1234567_1
++defaults/linux-64::libstdcxx-ng-11.2.0-h1234567_1
++defaults/linux-64::ncurses-6.4-h6a678d5_0
++defaults/linux-64::openssl-1.1.1t-h7f8727e_0
++defaults/linux-64::pip-23.0.1-py39h06a4308_0
++defaults/linux-64::python-3.9.16-h7a1cb2a_2
++defaults/linux-64::readline-8.2-h5eee18b_0
++defaults/linux-64::setuptools-66.0.0-py39h06a4308_0
++defaults/linux-64::sqlite-3.41.2-h5eee18b_0
++defaults/linux-64::tk-8.6.12-h1ccaba5_0
++defaults/linux-64::wheel-0.38.4-py39h06a4308_0
++defaults/linux-64::xz-5.2.10-h5eee18b_1
++defaults/linux-64::zlib-1.2.13-h5eee18b_0
++defaults/noarch::tzdata-2023c-h04d1e81_0
+# update specs: ['python=3.9']
+==> 2023-04-26 22:21:47 <==
+# cmd: /home/zach/miniconda3/bin/conda install -y -c conda-forge cudatoolkit=11.8.0
+# conda version: 23.3.1
+-defaults/linux-64::_libgcc_mutex-0.1-main
+-defaults/linux-64::_openmp_mutex-5.1-1_gnu
+-defaults/linux-64::ca-certificates-2023.01.10-h06a4308_0
+-defaults/linux-64::libgcc-ng-11.2.0-h1234567_1
+-defaults/linux-64::libgomp-11.2.0-h1234567_1
+-defaults/linux-64::libstdcxx-ng-11.2.0-h1234567_1
+-defaults/linux-64::openssl-1.1.1t-h7f8727e_0
++conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge
++conda-forge/linux-64::_openmp_mutex-4.5-2_kmp_llvm
++conda-forge/linux-64::ca-certificates-2022.12.7-ha878542_0
++conda-forge/linux-64::cudatoolkit-11.8.0-h37601d7_11
++conda-forge/linux-64::libgcc-ng-12.2.0-h65d4601_19
++conda-forge/linux-64::libstdcxx-ng-12.2.0-h46fd767_19
++conda-forge/linux-64::openssl-1.1.1t-h0b41bf4_0
++defaults/linux-64::llvm-openmp-14.0.6-h9e868ea_0
+# update specs: ['cudatoolkit=11.8.0']
+==> 2023-04-26 22:23:01 <==
+# cmd: /home/zach/miniconda3/bin/conda install -y -c nvidia cuda-nvcc=11.3.58
+# conda version: 23.3.1
+-conda-forge/linux-64::ca-certificates-2022.12.7-ha878542_0
+-conda-forge/linux-64::openssl-1.1.1t-h0b41bf4_0
++defaults/linux-64::ca-certificates-2023.01.10-h06a4308_0
++defaults/linux-64::openssl-1.1.1t-h7f8727e_0
++nvidia/linux-64::cuda-nvcc-11.3.58-h2467b9f_0
+# update specs: ['cuda-nvcc=11.3.58']

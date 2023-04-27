@@ -1,0 +1,660 @@
+{
+  "build": "h2467b9f_0",
+  "build_number": 0,
+  "channel": "https://conda.anaconda.org/nvidia/linux-64",
+  "constrains": [],
+  "depends": [],
+  "extracted_package_dir": "/home/zach/miniconda3/pkgs/cuda-nvcc-11.3.58-h2467b9f_0",
+  "features": "",
+  "files": [
+    "bin/bin2c",
+    "bin/crt/link.stub",
+    "bin/crt/prelink.stub",
+    "bin/cudafe++",
+    "bin/fatbinary",
+    "bin/nvcc",
+    "bin/nvcc.profile",
+    "bin/nvlink",
+    "bin/ptxas",
+    "include/crt/common_functions.h",
+    "include/crt/device_double_functions.h",
+    "include/crt/device_double_functions.hpp",
+    "include/crt/device_functions.h",
+    "include/crt/device_functions.hpp",
+    "include/crt/func_macro.h",
+    "include/crt/host_config.h",
+    "include/crt/host_defines.h",
+    "include/crt/host_runtime.h",
+    "include/crt/math_functions.h",
+    "include/crt/math_functions.hpp",
+    "include/crt/mma.h",
+    "include/crt/mma.hpp",
+    "include/crt/nvfunctional",
+    "include/crt/sm_70_rt.h",
+    "include/crt/sm_70_rt.hpp",
+    "include/crt/sm_80_rt.h",
+    "include/crt/sm_80_rt.hpp",
+    "include/crt/storage_class.h",
+    "include/fatbinary_section.h",
+    "include/nvPTXCompiler.h",
+    "lib/libnvptxcompiler_static.a",
+    "nvvm-prev/bin/cicc",
+    "nvvm-prev/include/nvvm.h",
+    "nvvm-prev/lib64/libnvvm.so",
+    "nvvm-prev/lib64/libnvvm.so.3",
+    "nvvm-prev/lib64/libnvvm.so.3.3.0",
+    "nvvm-prev/libdevice/libdevice.10.bc",
+    "nvvm-prev/libnvvm-samples/CMakeLists.txt",
+    "nvvm-prev/libnvvm-samples/README.txt",
+    "nvvm-prev/libnvvm-samples/build.bat",
+    "nvvm-prev/libnvvm-samples/build.sh",
+    "nvvm-prev/libnvvm-samples/common/include/DDSWriter.h",
+    "nvvm-prev/libnvvm-samples/common/include/drvapi_error_string.h",
+    "nvvm-prev/libnvvm-samples/cuda-c-linking/CMakeLists.txt",
+    "nvvm-prev/libnvvm-samples/cuda-c-linking/README.txt",
+    "nvvm-prev/libnvvm-samples/cuda-c-linking/cuda-c-linking.cpp",
+    "nvvm-prev/libnvvm-samples/cuda-c-linking/math-funcs.cu",
+    "nvvm-prev/libnvvm-samples/ptxgen/CMakeLists.txt",
+    "nvvm-prev/libnvvm-samples/ptxgen/README.txt",
+    "nvvm-prev/libnvvm-samples/ptxgen/ptxgen.c",
+    "nvvm-prev/libnvvm-samples/simple/CMakeLists.txt",
+    "nvvm-prev/libnvvm-samples/simple/README.txt",
+    "nvvm-prev/libnvvm-samples/simple/simple-gpu.ll",
+    "nvvm-prev/libnvvm-samples/simple/simple-gpu64.ll",
+    "nvvm-prev/libnvvm-samples/simple/simple.c",
+    "nvvm/bin/cicc",
+    "nvvm/include/nvvm.h",
+    "nvvm/lib64/libnvvm.so",
+    "nvvm/lib64/libnvvm.so.4",
+    "nvvm/lib64/libnvvm.so.4.0.0",
+    "nvvm/libdevice/libdevice.10.bc",
+    "nvvm/libnvvm-samples/CMakeLists.txt",
+    "nvvm/libnvvm-samples/README.txt",
+    "nvvm/libnvvm-samples/build.bat",
+    "nvvm/libnvvm-samples/build.sh",
+    "nvvm/libnvvm-samples/common/include/DDSWriter.h",
+    "nvvm/libnvvm-samples/common/include/drvapi_error_string.h",
+    "nvvm/libnvvm-samples/cuda-c-linking/CMakeLists.txt",
+    "nvvm/libnvvm-samples/cuda-c-linking/README.txt",
+    "nvvm/libnvvm-samples/cuda-c-linking/cuda-c-linking.cpp",
+    "nvvm/libnvvm-samples/cuda-c-linking/math-funcs.cu",
+    "nvvm/libnvvm-samples/ptxgen/CMakeLists.txt",
+    "nvvm/libnvvm-samples/ptxgen/README.txt",
+    "nvvm/libnvvm-samples/ptxgen/ptxgen.c",
+    "nvvm/libnvvm-samples/simple/CMakeLists.txt",
+    "nvvm/libnvvm-samples/simple/README.txt",
+    "nvvm/libnvvm-samples/simple/simple-gpu.ll",
+    "nvvm/libnvvm-samples/simple/simple-gpu64.ll",
+    "nvvm/libnvvm-samples/simple/simple.c"
+  ],
+  "fn": "cuda-nvcc-11.3.58-h2467b9f_0.tar.bz2",
+  "link": {
+    "source": "/home/zach/miniconda3/pkgs/cuda-nvcc-11.3.58-h2467b9f_0",
+    "type": 1
+  },
+  "md5": "d159f978e7ddb150ed3e4023cb597ab9",
+  "name": "cuda-nvcc",
+  "package_tarball_full_path": "/home/zach/miniconda3/pkgs/cuda-nvcc-11.3.58-h2467b9f_0.tar.bz2",
+  "paths_data": {
+    "paths": [
+      {
+        "_path": "bin/bin2c",
+        "path_type": "hardlink",
+        "sha256": "98600653849ad5775f167a7984863985ee46b948b667630f7d425c3273b79c0f",
+        "sha256_in_prefix": "98600653849ad5775f167a7984863985ee46b948b667630f7d425c3273b79c0f",
+        "size_in_bytes": 84704
+      },
+      {
+        "_path": "bin/crt/link.stub",
+        "path_type": "hardlink",
+        "sha256": "e35dfabef79885a9b66bd87a33d86c87e57af87197466b5066f2c528d12639ef",
+        "sha256_in_prefix": "e35dfabef79885a9b66bd87a33d86c87e57af87197466b5066f2c528d12639ef",
+        "size_in_bytes": 6260
+      },
+      {
+        "_path": "bin/crt/prelink.stub",
+        "path_type": "hardlink",
+        "sha256": "e0ca52d324302969ec5179ee558db18da339904200761f6492dbbf1ad9005966",
+        "sha256_in_prefix": "e0ca52d324302969ec5179ee558db18da339904200761f6492dbbf1ad9005966",
+        "size_in_bytes": 3974
+      },
+      {
+        "_path": "bin/cudafe++",
+        "path_type": "hardlink",
+        "sha256": "a20a9cbdc5dd84cf194ca6a72f36f15f7bce6512b4ee9395341c70487df6b24a",
+        "sha256_in_prefix": "a20a9cbdc5dd84cf194ca6a72f36f15f7bce6512b4ee9395341c70487df6b24a",
+        "size_in_bytes": 5418376
+      },
+      {
+        "_path": "bin/fatbinary",
+        "path_type": "hardlink",
+        "sha256": "b70df8634cbc2b21d1308c93f63ff0006548a6479d247c82a6acadc1370425c9",
+        "sha256_in_prefix": "b70df8634cbc2b21d1308c93f63ff0006548a6479d247c82a6acadc1370425c9",
+        "size_in_bytes": 273504
+      },
+      {
+        "_path": "bin/nvcc",
+        "path_type": "hardlink",
+        "sha256": "c6f648139e764119d6c317506ef62880eac7c5e4f10626615cfaf3d484a83489",
+        "sha256_in_prefix": "c6f648139e764119d6c317506ef62880eac7c5e4f10626615cfaf3d484a83489",
+        "size_in_bytes": 5682600
+      },
+      {
+        "_path": "bin/nvcc.profile",
+        "path_type": "hardlink",
+        "sha256": "76ec636a6aa013f30d5779502e3ed783cdea867dbade3d0c5af58e9220c93245",
+        "sha256_in_prefix": "76ec636a6aa013f30d5779502e3ed783cdea867dbade3d0c5af58e9220c93245",
+        "size_in_bytes": 337
+      },
+      {
+        "_path": "bin/nvlink",
+        "path_type": "hardlink",
+        "sha256": "6a9ac3345fa65e49fc7064eff0072567ebb277d3b77a76898238580aa20ceccc",
+        "sha256_in_prefix": "6a9ac3345fa65e49fc7064eff0072567ebb277d3b77a76898238580aa20ceccc",
+        "size_in_bytes": 9960896
+      },
+      {
+        "_path": "bin/ptxas",
+        "path_type": "hardlink",
+        "sha256": "8cca9c0fee536df017b0cbd337ebd6531f07c32fb1226496ea6e4e0f7d1af016",
+        "sha256_in_prefix": "8cca9c0fee536df017b0cbd337ebd6531f07c32fb1226496ea6e4e0f7d1af016",
+        "size_in_bytes": 9734400
+      },
+      {
+        "_path": "include/crt/common_functions.h",
+        "path_type": "hardlink",
+        "sha256": "fe96f3c3f8c50d77fd16ef3ca8825be1afb143abb9f754bb2455b61b1d89dd39",
+        "sha256_in_prefix": "fe96f3c3f8c50d77fd16ef3ca8825be1afb143abb9f754bb2455b61b1d89dd39",
+        "size_in_bytes": 13417
+      },
+      {
+        "_path": "include/crt/device_double_functions.h",
+        "path_type": "hardlink",
+        "sha256": "a739eeeb93e9d644f4f263645c1e89d5ea5e7c8a20c6a31aa50d1f9da6cd8ebe",
+        "sha256_in_prefix": "a739eeeb93e9d644f4f263645c1e89d5ea5e7c8a20c6a31aa50d1f9da6cd8ebe",
+        "size_in_bytes": 39789
+      },
+      {
+        "_path": "include/crt/device_double_functions.hpp",
+        "path_type": "hardlink",
+        "sha256": "61821ba9885be5099ff1ce187dc0bf8f2b60e054707173e3bf74c54f085bdb81",
+        "sha256_in_prefix": "61821ba9885be5099ff1ce187dc0bf8f2b60e054707173e3bf74c54f085bdb81",
+        "size_in_bytes": 8568
+      },
+      {
+        "_path": "include/crt/device_functions.h",
+        "path_type": "hardlink",
+        "sha256": "30261d80b3777001e3029d3fcf770836f7f9736294b10fe1c0fb11ec2664ff27",
+        "sha256_in_prefix": "30261d80b3777001e3029d3fcf770836f7f9736294b10fe1c0fb11ec2664ff27",
+        "size_in_bytes": 119958
+      },
+      {
+        "_path": "include/crt/device_functions.hpp",
+        "path_type": "hardlink",
+        "sha256": "ec7258fb2c86fab01f1a37db6c375b9a6dbdc1e59f21b4b0e4b6c237b55e36b8",
+        "sha256_in_prefix": "ec7258fb2c86fab01f1a37db6c375b9a6dbdc1e59f21b4b0e4b6c237b55e36b8",
+        "size_in_bytes": 8360
+      },
+      {
+        "_path": "include/crt/func_macro.h",
+        "path_type": "hardlink",
+        "sha256": "10ea4395a33dd7b6e1f5cc0188504f17af3d0c2301c398456abc4bc45b7e8bbe",
+        "sha256_in_prefix": "10ea4395a33dd7b6e1f5cc0188504f17af3d0c2301c398456abc4bc45b7e8bbe",
+        "size_in_bytes": 1755
+      },
+      {
+        "_path": "include/crt/host_config.h",
+        "path_type": "hardlink",
+        "sha256": "6a39ebe6a8e08d7746af55130a277047677e0047ba74e34663ab6236457d4d97",
+        "sha256_in_prefix": "6a39ebe6a8e08d7746af55130a277047677e0047ba74e34663ab6236457d4d97",
+        "size_in_bytes": 11086
+      },
+      {
+        "_path": "include/crt/host_defines.h",
+        "path_type": "hardlink",
+        "sha256": "07aa782b78f414a4b3aa3c142cdb03268fba87b19346b2c77aaaa6c287852193",
+        "sha256_in_prefix": "07aa782b78f414a4b3aa3c142cdb03268fba87b19346b2c77aaaa6c287852193",
+        "size_in_bytes": 8617
+      },
+      {
+        "_path": "include/crt/host_runtime.h",
+        "path_type": "hardlink",
+        "sha256": "42f7ab0ea05fd0c2cb671977930be434fc94a23220081f966e3803bef46711a5",
+        "sha256_in_prefix": "42f7ab0ea05fd0c2cb671977930be434fc94a23220081f966e3803bef46711a5",
+        "size_in_bytes": 9346
+      },
+      {
+        "_path": "include/crt/math_functions.h",
+        "path_type": "hardlink",
+        "sha256": "353ac13512dab8de1daeedbc82db66d4fe2c51e2b7064c2ce8bbd2fbabb07be3",
+        "sha256_in_prefix": "353ac13512dab8de1daeedbc82db66d4fe2c51e2b7064c2ce8bbd2fbabb07be3",
+        "size_in_bytes": 349751
+      },
+      {
+        "_path": "include/crt/math_functions.hpp",
+        "path_type": "hardlink",
+        "sha256": "f5eebb31a4f0616817d79f186190e570f493b50957772ea9c11055532d5e5578",
+        "sha256_in_prefix": "f5eebb31a4f0616817d79f186190e570f493b50957772ea9c11055532d5e5578",
+        "size_in_bytes": 99913
+      },
+      {
+        "_path": "include/crt/mma.h",
+        "path_type": "hardlink",
+        "sha256": "3a62102e61b3665e7d6f765f691c8393f1ee2af146640382845148f2256f8906",
+        "sha256_in_prefix": "3a62102e61b3665e7d6f765f691c8393f1ee2af146640382845148f2256f8906",
+        "size_in_bytes": 62502
+      },
+      {
+        "_path": "include/crt/mma.hpp",
+        "path_type": "hardlink",
+        "sha256": "b29a342d7ef5b540a2a712b9d7b06cb23d2773e6477fca0c5b3bc7a18601ffa2",
+        "sha256_in_prefix": "b29a342d7ef5b540a2a712b9d7b06cb23d2773e6477fca0c5b3bc7a18601ffa2",
+        "size_in_bytes": 66599
+      },
+      {
+        "_path": "include/crt/nvfunctional",
+        "path_type": "hardlink",
+        "sha256": "143334cea58ee9b97d8e924acfd53c08c6e3b7a8932a1d7cb506a5c40bd1b1a8",
+        "sha256_in_prefix": "143334cea58ee9b97d8e924acfd53c08c6e3b7a8932a1d7cb506a5c40bd1b1a8",
+        "size_in_bytes": 16900
+      },
+      {
+        "_path": "include/crt/sm_70_rt.h",
+        "path_type": "hardlink",
+        "sha256": "6ffb9bef700c4fbae2e4f8766a167353a872ac57c8ca69c4c7734cee5bf4d543",
+        "sha256_in_prefix": "6ffb9bef700c4fbae2e4f8766a167353a872ac57c8ca69c4c7734cee5bf4d543",
+        "size_in_bytes": 6506
+      },
+      {
+        "_path": "include/crt/sm_70_rt.hpp",
+        "path_type": "hardlink",
+        "sha256": "d65488c572bd85fc55356ead324c330b1095921ae8e4ad1df6691a9ab2dba30a",
+        "sha256_in_prefix": "d65488c572bd85fc55356ead324c330b1095921ae8e4ad1df6691a9ab2dba30a",
+        "size_in_bytes": 7833
+      },
+      {
+        "_path": "include/crt/sm_80_rt.h",
+        "path_type": "hardlink",
+        "sha256": "217bcc9a7512535c15e16a0b8771b2f5bef9cab83074654d655508a89a8680e2",
+        "sha256_in_prefix": "217bcc9a7512535c15e16a0b8771b2f5bef9cab83074654d655508a89a8680e2",
+        "size_in_bytes": 5498
+      },
+      {
+        "_path": "include/crt/sm_80_rt.hpp",
+        "path_type": "hardlink",
+        "sha256": "e5d06f2200cde1c7b0bb6d333ac708f519acfe0ec78b4d42b99e149af8c7fb09",
+        "sha256_in_prefix": "e5d06f2200cde1c7b0bb6d333ac708f519acfe0ec78b4d42b99e149af8c7fb09",
+        "size_in_bytes": 6706
+      },
+      {
+        "_path": "include/crt/storage_class.h",
+        "path_type": "hardlink",
+        "sha256": "77370e675ea92da37c7a3a87697c388876c127a7d75b17da53eb23d908d8cf38",
+        "sha256_in_prefix": "77370e675ea92da37c7a3a87697c388876c127a7d75b17da53eb23d908d8cf38",
+        "size_in_bytes": 4791
+      },
+      {
+        "_path": "include/fatbinary_section.h",
+        "path_type": "hardlink",
+        "sha256": "367b947f2df9f32189c787a7ab4a419deb63bf5ed459afa73a58184e8522b6bc",
+        "sha256_in_prefix": "367b947f2df9f32189c787a7ab4a419deb63bf5ed459afa73a58184e8522b6bc",
+        "size_in_bytes": 1809
+      },
+      {
+        "_path": "include/nvPTXCompiler.h",
+        "path_type": "hardlink",
+        "sha256": "dbe635adc2b5a11764df0edbe592c821552e412e1deb3e3d6c3690a5ef337b93",
+        "sha256_in_prefix": "dbe635adc2b5a11764df0edbe592c821552e412e1deb3e3d6c3690a5ef337b93",
+        "size_in_bytes": 11859
+      },
+      {
+        "_path": "lib/libnvptxcompiler_static.a",
+        "path_type": "hardlink",
+        "sha256": "9ef84d38297d247202cd010e92c21d022fc17339a2e3f6717bdfd3b350a2e572",
+        "sha256_in_prefix": "9ef84d38297d247202cd010e92c21d022fc17339a2e3f6717bdfd3b350a2e572",
+        "size_in_bytes": 19032688
+      },
+      {
+        "_path": "nvvm-prev/bin/cicc",
+        "path_type": "hardlink",
+        "sha256": "fab144ba66abcc8fbb1a48ca6cea6d9ea2a914444c3f058f72d749d68e7bb892",
+        "sha256_in_prefix": "fab144ba66abcc8fbb1a48ca6cea6d9ea2a914444c3f058f72d749d68e7bb892",
+        "size_in_bytes": 24458744
+      },
+      {
+        "_path": "nvvm-prev/include/nvvm.h",
+        "path_type": "hardlink",
+        "sha256": "48022aada1bd98c9b09e271e40903400ca796a8a33f2f88f9c3cb5b45f48a7ce",
+        "sha256_in_prefix": "48022aada1bd98c9b09e271e40903400ca796a8a33f2f88f9c3cb5b45f48a7ce",
+        "size_in_bytes": 10993
+      },
+      {
+        "_path": "nvvm-prev/lib64/libnvvm.so",
+        "path_type": "softlink",
+        "sha256": "8f2fdf9680f3ce176ad530aed59033e474bb2447bb53c82f076493da84836d21",
+        "size_in_bytes": 15816352
+      },
+      {
+        "_path": "nvvm-prev/lib64/libnvvm.so.3",
+        "path_type": "softlink",
+        "sha256": "8f2fdf9680f3ce176ad530aed59033e474bb2447bb53c82f076493da84836d21",
+        "size_in_bytes": 15816352
+      },
+      {
+        "_path": "nvvm-prev/lib64/libnvvm.so.3.3.0",
+        "path_type": "hardlink",
+        "sha256": "8f2fdf9680f3ce176ad530aed59033e474bb2447bb53c82f076493da84836d21",
+        "sha256_in_prefix": "8f2fdf9680f3ce176ad530aed59033e474bb2447bb53c82f076493da84836d21",
+        "size_in_bytes": 15816352
+      },
+      {
+        "_path": "nvvm-prev/libdevice/libdevice.10.bc",
+        "path_type": "hardlink",
+        "sha256": "9aee79fe3d6853201930f17b25124349ed37736260674baebfe1ffcec689bede",
+        "sha256_in_prefix": "9aee79fe3d6853201930f17b25124349ed37736260674baebfe1ffcec689bede",
+        "size_in_bytes": 470764
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/CMakeLists.txt",
+        "path_type": "hardlink",
+        "sha256": "8ce6b1e5a20f678fa3367d28652b11450825e522776ad591e3cf67cfb4050637",
+        "sha256_in_prefix": "8ce6b1e5a20f678fa3367d28652b11450825e522776ad591e3cf67cfb4050637",
+        "size_in_bytes": 6737
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/README.txt",
+        "path_type": "hardlink",
+        "sha256": "ed67c33b9760326be0767652a77607f3ec19b74d20e2ae088e3ca4aee99e71e7",
+        "sha256_in_prefix": "ed67c33b9760326be0767652a77607f3ec19b74d20e2ae088e3ca4aee99e71e7",
+        "size_in_bytes": 2831
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/build.bat",
+        "path_type": "hardlink",
+        "sha256": "41789129f7f8097a252aa580f8c4cab4dd970650661d3be3ba6e8ed41ad2e48f",
+        "sha256_in_prefix": "41789129f7f8097a252aa580f8c4cab4dd970650661d3be3ba6e8ed41ad2e48f",
+        "size_in_bytes": 108
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/build.sh",
+        "path_type": "hardlink",
+        "sha256": "690b5f88592f7ae203112bfd8aa2caac1ded40748dcf717f591d02c1c7a1e8a0",
+        "sha256_in_prefix": "690b5f88592f7ae203112bfd8aa2caac1ded40748dcf717f591d02c1c7a1e8a0",
+        "size_in_bytes": 94
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/common/include/DDSWriter.h",
+        "path_type": "hardlink",
+        "sha256": "dc32cd6abfedd811a5d6e368317ef5e37bdca1fd6fa153c6e6b07fd2ec81b709",
+        "sha256_in_prefix": "dc32cd6abfedd811a5d6e368317ef5e37bdca1fd6fa153c6e6b07fd2ec81b709",
+        "size_in_bytes": 3036
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/common/include/drvapi_error_string.h",
+        "path_type": "hardlink",
+        "sha256": "7a3a5b8595d83be3de1df0a57fc83c5ae3e9a3acaea429f3e362b5c52e72e850",
+        "sha256_in_prefix": "7a3a5b8595d83be3de1df0a57fc83c5ae3e9a3acaea429f3e362b5c52e72e850",
+        "size_in_bytes": 12054
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/cuda-c-linking/CMakeLists.txt",
+        "path_type": "hardlink",
+        "sha256": "34f4033bf02e077c48c1f2216fa5f2b6f5b73cbc6caf92a095789f65f7ea9cdc",
+        "sha256_in_prefix": "34f4033bf02e077c48c1f2216fa5f2b6f5b73cbc6caf92a095789f65f7ea9cdc",
+        "size_in_bytes": 4527
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/cuda-c-linking/README.txt",
+        "path_type": "hardlink",
+        "sha256": "791313ec1605cb92ba98ccfe45a3c03f2a3f8f8627a46f240c8ab043504686b8",
+        "sha256_in_prefix": "791313ec1605cb92ba98ccfe45a3c03f2a3f8f8627a46f240c8ab043504686b8",
+        "size_in_bytes": 1664
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/cuda-c-linking/cuda-c-linking.cpp",
+        "path_type": "hardlink",
+        "sha256": "6e12179da4ceaff3111fb17359952c0085819ab66f0454c5d19b0a59078e8089",
+        "sha256_in_prefix": "6e12179da4ceaff3111fb17359952c0085819ab66f0454c5d19b0a59078e8089",
+        "size_in_bytes": 10796
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/cuda-c-linking/math-funcs.cu",
+        "path_type": "hardlink",
+        "sha256": "d4ce5e9488331b67e859306a94184f693965f901bf5875b1475de75d78d1e60a",
+        "sha256_in_prefix": "d4ce5e9488331b67e859306a94184f693965f901bf5875b1475de75d78d1e60a",
+        "size_in_bytes": 1722
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/ptxgen/CMakeLists.txt",
+        "path_type": "hardlink",
+        "sha256": "f7efdd5c63c7cdd4b4c8cfb58ae562752002ede6476c1a4c69fae1225a9d8c7e",
+        "sha256_in_prefix": "f7efdd5c63c7cdd4b4c8cfb58ae562752002ede6476c1a4c69fae1225a9d8c7e",
+        "size_in_bytes": 2019
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/ptxgen/README.txt",
+        "path_type": "hardlink",
+        "sha256": "b9a76158793f48184b9a28802de2b4038ac20f27e3419ba2bee6eb87b243579f",
+        "sha256_in_prefix": "b9a76158793f48184b9a28802de2b4038ac20f27e3419ba2bee6eb87b243579f",
+        "size_in_bytes": 1172
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/ptxgen/ptxgen.c",
+        "path_type": "hardlink",
+        "sha256": "4eb81469bd684336ab1383adb30fdf7af5677fee59569f66c97e4fe5d9de1a04",
+        "sha256_in_prefix": "4eb81469bd684336ab1383adb30fdf7af5677fee59569f66c97e4fe5d9de1a04",
+        "size_in_bytes": 8410
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/simple/CMakeLists.txt",
+        "path_type": "hardlink",
+        "sha256": "778facdc5a31b7f37929833105e8a058072ab7a49e35e1ba8c7851f17b59f136",
+        "sha256_in_prefix": "778facdc5a31b7f37929833105e8a058072ab7a49e35e1ba8c7851f17b59f136",
+        "size_in_bytes": 2181
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/simple/README.txt",
+        "path_type": "hardlink",
+        "sha256": "fe2ff2cbb1d16979579e199a0e21d9de1a02832ed46d53a10318e5021bfbb716",
+        "sha256_in_prefix": "fe2ff2cbb1d16979579e199a0e21d9de1a02832ed46d53a10318e5021bfbb716",
+        "size_in_bytes": 270
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/simple/simple-gpu.ll",
+        "path_type": "hardlink",
+        "sha256": "06e6f7ca57f19546d80f7a6f0fdbf2fb14c14816ace36a41ab835073d7ed3a82",
+        "sha256_in_prefix": "06e6f7ca57f19546d80f7a6f0fdbf2fb14c14816ace36a41ab835073d7ed3a82",
+        "size_in_bytes": 1683
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/simple/simple-gpu64.ll",
+        "path_type": "hardlink",
+        "sha256": "f9121ca77d4318f2626a356053c71063f86599604146bcb5953bc15686c81bfe",
+        "sha256_in_prefix": "f9121ca77d4318f2626a356053c71063f86599604146bcb5953bc15686c81bfe",
+        "size_in_bytes": 1685
+      },
+      {
+        "_path": "nvvm-prev/libnvvm-samples/simple/simple.c",
+        "path_type": "hardlink",
+        "sha256": "38433fcd3a2f1c971de5deaa2323f2bf3b7c7b5cce1b40cb9f7a30f4ee939348",
+        "sha256_in_prefix": "38433fcd3a2f1c971de5deaa2323f2bf3b7c7b5cce1b40cb9f7a30f4ee939348",
+        "size_in_bytes": 6644
+      },
+      {
+        "_path": "nvvm/bin/cicc",
+        "path_type": "hardlink",
+        "sha256": "e439c4778d5b28e0a95511d32d8f159712f678c8afefb1501f238d0fe292c874",
+        "sha256_in_prefix": "e439c4778d5b28e0a95511d32d8f159712f678c8afefb1501f238d0fe292c874",
+        "size_in_bytes": 35151584
+      },
+      {
+        "_path": "nvvm/include/nvvm.h",
+        "path_type": "hardlink",
+        "sha256": "48022aada1bd98c9b09e271e40903400ca796a8a33f2f88f9c3cb5b45f48a7ce",
+        "sha256_in_prefix": "48022aada1bd98c9b09e271e40903400ca796a8a33f2f88f9c3cb5b45f48a7ce",
+        "size_in_bytes": 10993
+      },
+      {
+        "_path": "nvvm/lib64/libnvvm.so",
+        "path_type": "softlink",
+        "sha256": "cf84c56902910d560fd2ba871ae70e3e1a92974187ef3cbccfe51485ee707a63",
+        "size_in_bytes": 26650208
+      },
+      {
+        "_path": "nvvm/lib64/libnvvm.so.4",
+        "path_type": "softlink",
+        "sha256": "cf84c56902910d560fd2ba871ae70e3e1a92974187ef3cbccfe51485ee707a63",
+        "size_in_bytes": 26650208
+      },
+      {
+        "_path": "nvvm/lib64/libnvvm.so.4.0.0",
+        "path_type": "hardlink",
+        "sha256": "cf84c56902910d560fd2ba871ae70e3e1a92974187ef3cbccfe51485ee707a63",
+        "sha256_in_prefix": "cf84c56902910d560fd2ba871ae70e3e1a92974187ef3cbccfe51485ee707a63",
+        "size_in_bytes": 26650208
+      },
+      {
+        "_path": "nvvm/libdevice/libdevice.10.bc",
+        "path_type": "hardlink",
+        "sha256": "9aee79fe3d6853201930f17b25124349ed37736260674baebfe1ffcec689bede",
+        "sha256_in_prefix": "9aee79fe3d6853201930f17b25124349ed37736260674baebfe1ffcec689bede",
+        "size_in_bytes": 470764
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/CMakeLists.txt",
+        "path_type": "hardlink",
+        "sha256": "8ce6b1e5a20f678fa3367d28652b11450825e522776ad591e3cf67cfb4050637",
+        "sha256_in_prefix": "8ce6b1e5a20f678fa3367d28652b11450825e522776ad591e3cf67cfb4050637",
+        "size_in_bytes": 6737
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/README.txt",
+        "path_type": "hardlink",
+        "sha256": "ed67c33b9760326be0767652a77607f3ec19b74d20e2ae088e3ca4aee99e71e7",
+        "sha256_in_prefix": "ed67c33b9760326be0767652a77607f3ec19b74d20e2ae088e3ca4aee99e71e7",
+        "size_in_bytes": 2831
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/build.bat",
+        "path_type": "hardlink",
+        "sha256": "41789129f7f8097a252aa580f8c4cab4dd970650661d3be3ba6e8ed41ad2e48f",
+        "sha256_in_prefix": "41789129f7f8097a252aa580f8c4cab4dd970650661d3be3ba6e8ed41ad2e48f",
+        "size_in_bytes": 108
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/build.sh",
+        "path_type": "hardlink",
+        "sha256": "690b5f88592f7ae203112bfd8aa2caac1ded40748dcf717f591d02c1c7a1e8a0",
+        "sha256_in_prefix": "690b5f88592f7ae203112bfd8aa2caac1ded40748dcf717f591d02c1c7a1e8a0",
+        "size_in_bytes": 94
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/common/include/DDSWriter.h",
+        "path_type": "hardlink",
+        "sha256": "dc32cd6abfedd811a5d6e368317ef5e37bdca1fd6fa153c6e6b07fd2ec81b709",
+        "sha256_in_prefix": "dc32cd6abfedd811a5d6e368317ef5e37bdca1fd6fa153c6e6b07fd2ec81b709",
+        "size_in_bytes": 3036
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/common/include/drvapi_error_string.h",
+        "path_type": "hardlink",
+        "sha256": "7a3a5b8595d83be3de1df0a57fc83c5ae3e9a3acaea429f3e362b5c52e72e850",
+        "sha256_in_prefix": "7a3a5b8595d83be3de1df0a57fc83c5ae3e9a3acaea429f3e362b5c52e72e850",
+        "size_in_bytes": 12054
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/cuda-c-linking/CMakeLists.txt",
+        "path_type": "hardlink",
+        "sha256": "34f4033bf02e077c48c1f2216fa5f2b6f5b73cbc6caf92a095789f65f7ea9cdc",
+        "sha256_in_prefix": "34f4033bf02e077c48c1f2216fa5f2b6f5b73cbc6caf92a095789f65f7ea9cdc",
+        "size_in_bytes": 4527
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/cuda-c-linking/README.txt",
+        "path_type": "hardlink",
+        "sha256": "791313ec1605cb92ba98ccfe45a3c03f2a3f8f8627a46f240c8ab043504686b8",
+        "sha256_in_prefix": "791313ec1605cb92ba98ccfe45a3c03f2a3f8f8627a46f240c8ab043504686b8",
+        "size_in_bytes": 1664
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/cuda-c-linking/cuda-c-linking.cpp",
+        "path_type": "hardlink",
+        "sha256": "6e12179da4ceaff3111fb17359952c0085819ab66f0454c5d19b0a59078e8089",
+        "sha256_in_prefix": "6e12179da4ceaff3111fb17359952c0085819ab66f0454c5d19b0a59078e8089",
+        "size_in_bytes": 10796
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/cuda-c-linking/math-funcs.cu",
+        "path_type": "hardlink",
+        "sha256": "d4ce5e9488331b67e859306a94184f693965f901bf5875b1475de75d78d1e60a",
+        "sha256_in_prefix": "d4ce5e9488331b67e859306a94184f693965f901bf5875b1475de75d78d1e60a",
+        "size_in_bytes": 1722
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/ptxgen/CMakeLists.txt",
+        "path_type": "hardlink",
+        "sha256": "f7efdd5c63c7cdd4b4c8cfb58ae562752002ede6476c1a4c69fae1225a9d8c7e",
+        "sha256_in_prefix": "f7efdd5c63c7cdd4b4c8cfb58ae562752002ede6476c1a4c69fae1225a9d8c7e",
+        "size_in_bytes": 2019
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/ptxgen/README.txt",
+        "path_type": "hardlink",
+        "sha256": "b9a76158793f48184b9a28802de2b4038ac20f27e3419ba2bee6eb87b243579f",
+        "sha256_in_prefix": "b9a76158793f48184b9a28802de2b4038ac20f27e3419ba2bee6eb87b243579f",
+        "size_in_bytes": 1172
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/ptxgen/ptxgen.c",
+        "path_type": "hardlink",
+        "sha256": "4eb81469bd684336ab1383adb30fdf7af5677fee59569f66c97e4fe5d9de1a04",
+        "sha256_in_prefix": "4eb81469bd684336ab1383adb30fdf7af5677fee59569f66c97e4fe5d9de1a04",
+        "size_in_bytes": 8410
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/simple/CMakeLists.txt",
+        "path_type": "hardlink",
+        "sha256": "778facdc5a31b7f37929833105e8a058072ab7a49e35e1ba8c7851f17b59f136",
+        "sha256_in_prefix": "778facdc5a31b7f37929833105e8a058072ab7a49e35e1ba8c7851f17b59f136",
+        "size_in_bytes": 2181
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/simple/README.txt",
+        "path_type": "hardlink",
+        "sha256": "fe2ff2cbb1d16979579e199a0e21d9de1a02832ed46d53a10318e5021bfbb716",
+        "sha256_in_prefix": "fe2ff2cbb1d16979579e199a0e21d9de1a02832ed46d53a10318e5021bfbb716",
+        "size_in_bytes": 270
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/simple/simple-gpu.ll",
+        "path_type": "hardlink",
+        "sha256": "06e6f7ca57f19546d80f7a6f0fdbf2fb14c14816ace36a41ab835073d7ed3a82",
+        "sha256_in_prefix": "06e6f7ca57f19546d80f7a6f0fdbf2fb14c14816ace36a41ab835073d7ed3a82",
+        "size_in_bytes": 1683
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/simple/simple-gpu64.ll",
+        "path_type": "hardlink",
+        "sha256": "f9121ca77d4318f2626a356053c71063f86599604146bcb5953bc15686c81bfe",
+        "sha256_in_prefix": "f9121ca77d4318f2626a356053c71063f86599604146bcb5953bc15686c81bfe",
+        "size_in_bytes": 1685
+      },
+      {
+        "_path": "nvvm/libnvvm-samples/simple/simple.c",
+        "path_type": "hardlink",
+        "sha256": "38433fcd3a2f1c971de5deaa2323f2bf3b7c7b5cce1b40cb9f7a30f4ee939348",
+        "sha256_in_prefix": "38433fcd3a2f1c971de5deaa2323f2bf3b7c7b5cce1b40cb9f7a30f4ee939348",
+        "size_in_bytes": 6644
+      }
+    ],
+    "paths_version": 1
+  },
+  "requested_spec": "cuda-nvcc=11.3.58",
+  "sha256": "77f7088fd3e7eaaba8f1fecc91e314e0736f22bb7a5cda9875b6bdfb590ea7c0",
+  "size": 56752341,
+  "subdir": "linux-64",
+  "timestamp": 1625793727124,
+  "track_features": "",
+  "url": "https://conda.anaconda.org/nvidia/linux-64/cuda-nvcc-11.3.58-h2467b9f_0.tar.bz2",
+  "version": "11.3.58"
+}

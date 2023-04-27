@@ -1,0 +1,3 @@
+CUDNN_PATH=
+export LD_LIBRARY_PATH=:/home/zach/miniconda3/envs/tf/lib/:/home/zach/miniconda3/envs/tf/lib/python3.9/site-packages/nvidia/cudnn/lib:/home/zach/miniconda3/envs/stocksai/lib/:/home/zach/miniconda3/envs/stocksai/lib/python3.9/site-packages/nvidia/cudnn/lib:/home/zach/miniconda3/envs/stocksai-model/lib/:/home/zach/miniconda3/envs/stocksai-model/lib/python3.9/site-packages/nvidia/cudnn/lib:/home/zach/miniconda3/envs/stocksai-model/lib/:/home/zach/miniconda3/envs/stocksai-model/lib/python3.9/site-packages/nvidia/cudnn/lib:/home/zach/miniconda3/envs/stocksai-model/lib/:/home/zach/miniconda3/envs/stocksai-model/lib/python3.9/site-packages/nvidia/cudnn/lib:,."stocksai-model"/lib/:/lib
+export XLA_FLAGS=--xla_gpu_cuda_data_dir=./"stocksai-model"/lib/
