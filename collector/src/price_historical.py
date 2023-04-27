@@ -25,9 +25,9 @@ def get_data(link):
 
 def clean_data(data: str) -> pl.DataFrame:
     df = pl.read_csv(StringIO(data))
-    df = df.drop(["Open","High","Low","Close"])
+    # df = df.drop(["Open","High","Low","Close"])
 
-    df = df.rename({"Adj Close": "Price"})
+    # df = df.rename({"Adj Close": "Price"})
 
     return df
 

@@ -1,8 +1,8 @@
 import os
 import polars as pl
 
-from model import utils
-from model.window_generator import WindowGenerator
+from src import utils
+from src.window_generator import WindowGenerator
 
 
 class DatasetGenerator():
