@@ -1,5 +1,7 @@
 # Project specific
 data/
+collector/.collector-venv
+model/stocksai-model-env
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
