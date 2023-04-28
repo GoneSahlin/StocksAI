@@ -27,6 +27,8 @@ def split_dfs(dfs, train_percent, val_percent):
 
 def load_data(folder):
     filenames = os.listdir(os.path.join("data", folder))
+
+    filenames.sort()
     
     dfs = []
     for filename in filenames:
@@ -74,7 +76,10 @@ def setup_data(dfs, train_percent, val_percent):
 def clean_price_df(df: pl.DataFrame):
     df = df.with_columns(pl.col("Date").str.strptime(pl.Date, format="%Y-%m-%d"))
 
-    df = df.with_columns([(pl.col(label) / pl.col(label).shift()) for label in df.columns[1:]])
+    df = df.with_columns([(pl.col(label) / pl.col(label).shift()) for label in df.columns[1:-1]])
+
+    # remove top row
+    df = df[1:]
 
     return df
 
