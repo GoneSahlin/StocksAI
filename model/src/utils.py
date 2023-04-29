@@ -1,5 +1,6 @@
 import polars as pl
 import os
+import s3fs
 
 
 s3_prefix = "s3://sahlin.stocksai"
@@ -28,16 +29,19 @@ def split_dfs(dfs, train_percent, val_percent):
     return train_dfs, val_dfs, test_dfs
 
 
-def load_data(folder, return_filenames=False):
-    filenames = os.listdir(os.path.join(s3_prefix, folder))
+def load_data(folder, fs: s3fs.S3FileSystem, return_filenames=False):
+    folder_path = os.path.join(s3_prefix, folder)
 
+    filenames = fs.ls(folder_path)
+    filenames = [filename.split('/')[-1] for filename in filenames]
     filenames.sort()
     
     dfs = []
     for filename in filenames:
         filepath = os.path.join(s3_prefix, folder, filename)
 
-        df = pl.read_csv(filepath)
+        with fs.open(filepath, 'rb') as infile:
+            df = pl.read_csv(infile)
 
         dfs.append(df)
 
@@ -128,10 +132,12 @@ def clean_and_join_index_dfs(index_dfs, index_tickers):
 
 
 def load_and_setup_data():
-    price_dfs = load_data('prices')
-    quarterly_financials_dfs = load_data('quarterly_financials')
+    fs = s3fs.S3FileSystem()
 
-    index_dfs, index_tickers = load_data('indexes', return_filenames=True)
+    price_dfs = load_data('prices', fs)
+    quarterly_financials_dfs = load_data('quarterly_financials', fs)
+
+    index_dfs, index_tickers = load_data('indexes', fs, return_filenames=True)
     index_tickers = [ticker[:-4] for ticker in index_tickers]  # remove .csv from filenames
 
     indexes_df = clean_and_join_index_dfs(index_dfs, index_tickers)

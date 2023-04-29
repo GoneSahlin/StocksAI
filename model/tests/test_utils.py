@@ -2,9 +2,13 @@ import polars as pl
 import datetime
 import os
 import pytest
+import s3fs
 
 from src import utils
 from src.dataset_generator import DatasetGenerator
+
+
+fs = s3fs.S3FileSystem()
 
 
 def create_df():
@@ -66,19 +70,13 @@ def test_split_dfs():
 
 
 def test_load_data():
-    if not os.path.exists("data"):
-        pytest.skip("Data folder does not exist")
-
-    dfs = utils.load_data('prices')
+    dfs = utils.load_data('prices', fs)
 
     assert dfs
 
 
 def test_setup_data():
-    if not os.path.exists("data"):
-        pytest.skip("Data folder does not exist")
-
-    dfs = utils.load_data('prices')
+    dfs = utils.load_data('prices', fs)
 
     for df in dfs:
         df.drop_in_place("Date")
@@ -140,9 +138,6 @@ def test_clean_and_join_index_dfs():
 
 
 def test_load_and_setup_data():
-    if not os.path.exists("data"):
-        pytest.skip("Data folder does not exist")
-
     train_dfs, val_dfs, test_dfs = utils.load_and_setup_data()
 
     assert all([not train_df.is_empty() for train_df in train_dfs])
