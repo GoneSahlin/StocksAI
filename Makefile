@@ -1,6 +1,7 @@
 SHELL := /bin/bash
 
-VENV = collector/.collector-venv
+VENV = collector/.venv
+
 # CONDA_ENV_NAME ?= model/stocksai-model-env
 # CONDA_ENV_NAME ?= tf
 # ACTIVATE_ENV = source ~/miniconda3/bin/activate ./$(CONDA_ENV_NAME)
@@ -12,7 +13,7 @@ test: test-collector
 
 .PHONY: lint
 lint: $(VENV)
-	-$(VENV)/bin/flake8 --exclude $(VENV)
+	-$(VENV)/bin/flake8 --exclude $(VENV) --exclude $(VENV)
 
 $(VENV): collector/pyproject.toml collector/setup.cfg
 	python3 -m venv $(VENV)
@@ -26,6 +27,16 @@ test-collector: $(VENV)
 .PHONY: collect
 collect: $(VENV)
 	$(VENV)/bin/python3 collector/src/historical.py
+	
+collect_lambda.zip: FORCE
+	rm collect_lambda.zip
+	python3 -m venv .lambda-venv
+	.lambda-venv/bin/pip install -e collector
+	cd .lambda-venv/lib/python3.10/site-packages &&\
+	zip -r ../../../../collect_lambda.zip .
+	cd lambdas &&\
+	zip -g ../collect_lambda.zip collect.py
+	rm -rf .lambda-venv
 
 # .PHONY: build-conda-env
 # build-conda-env: $(CONDA_ENV_NAME)
@@ -72,3 +83,6 @@ clean:
 	rm -rf collector/stocksai_collector.egg-info
 	rm -rf geckodriver.log
 	rm -rf collector/.pytest_cache
+	rm collect_lambda.zip
+
+FORCE:

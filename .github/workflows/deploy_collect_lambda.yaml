@@ -7,6 +7,8 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v1
+      - name: build
+        runs: make collect_lambda.zip
       - name: deploy
         uses: appleboy/lambda-action@master
         with:
@@ -14,4 +16,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: stocksai_collect
-          source: lambdas/function.py
+          zip_file: collect_lambda.zip

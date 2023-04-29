@@ -2,6 +2,7 @@
 data/
 collector/.collector-venv
 model/stocksai-model-env
+collect_lambda.zip
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
