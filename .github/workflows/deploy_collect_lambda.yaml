@@ -8,7 +8,8 @@ jobs:
       - name: checkout
         uses: actions/checkout@v1
       - name: build
-        runs: make collect_lambda.zip
+        run: |
+          make collect_lambda.zip
       - name: deploy
         uses: appleboy/lambda-action@master
         with:
