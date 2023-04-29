@@ -1,4 +1,4 @@
-name: Deploy Collect Lambda Function
+name: Deploy Lambdas
 on: [push]
 jobs:
   deploy_source:
@@ -14,4 +14,4 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws_region: ${{ secrets.AWS_REGION }}
           function_name: stocksai_collect
-          source: function.py
+          source: lambdas/function.py
