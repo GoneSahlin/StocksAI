@@ -1,6 +1,8 @@
 SHELL := /bin/bash
 
-VENV = collector/.collector-venv
+COL_VENV = collector/.venv
+APP_VENV = app/.venv
+
 # CONDA_ENV_NAME ?= model/stocksai-model-env
 # CONDA_ENV_NAME ?= tf
 # ACTIVATE_ENV = source ~/miniconda3/bin/activate ./$(CONDA_ENV_NAME)
@@ -11,21 +13,44 @@ all: test lint
 test: test-collector
 
 .PHONY: lint
-lint: $(VENV)
-	-$(VENV)/bin/flake8 --exclude $(VENV)
+lint: $(COL_VENV)
+	-$(COL_VENV)/bin/flake8 --exclude $(COL_VENV) --exclude $(COL_VENV)
 
-$(VENV): collector/pyproject.toml collector/setup.cfg
-	python3 -m venv $(VENV)
-	$(VENV)/bin/pip install -e collector[dev]
-	touch $(VENV)
+# -------------- COLLECTOR ---------------
+$(COL_VENV): collector/pyproject.toml collector/setup.cfg
+	python3 -m venv $(COL_VENV)
+	$(COL_VENV)/bin/pip install -e collector[dev]
+	touch $(COL_VENV)
 
 .PHONY: test-collector
-test-collector: $(VENV)
-	$(VENV)/bin/pytest collector
+test-collector: $(COL_VENV)
+	$(COL_VENV)/bin/pytest collector
 
 .PHONY: collect
-collect: $(VENV)
-	$(VENV)/bin/python3 collector/src/historical.py
+collect: $(COL_VENV)
+	$(COL_VENV)/bin/python3 collector/src/historical.py
+	
+# ---------------- LAMBDA ----------------
+collect_lambda.zip: FORCE
+	rm -f collect_lambda.zip
+	python3 -m venv .lambda-venv
+	.lambda-venv/bin/pip install ./collector
+	cd .lambda-venv/lib/python3.10/site-packages &&\
+	zip -r ../../../../collect_lambda.zip .
+	cd lambdas &&\
+	zip -g ../collect_lambda.zip collect.py
+	rm -rf .lambda-venv
+
+# ----------------- APP ------------------
+$(APP_VENV): app/pyproject.toml app/setup.cfg
+	python3 -m venv $(APP_VENV)
+	$(APP_VENV)/bin/pip install -e app[dev]
+	touch $(APP_VENV)
+
+.PHONY: run-app
+run-app: $(APP_VENV)
+	$(APP_VENV)/bin/streamlit run app/src/app.py
+
 
 # .PHONY: build-conda-env
 # build-conda-env: $(CONDA_ENV_NAME)
@@ -72,3 +97,6 @@ clean:
 	rm -rf collector/stocksai_collector.egg-info
 	rm -rf geckodriver.log
 	rm -rf collector/.pytest_cache
+	rm collect_lambda.zip
+
+FORCE:
