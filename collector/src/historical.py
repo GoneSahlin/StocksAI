@@ -19,6 +19,13 @@ def collect_historical(ticker):
                 os.remove(path)
 
 
+def collect_indexes():
+    # indexes
+    indexes = ["^GSPC", "^TNX"]
+    for index in indexes:
+        price_historical.collect_index_historical(index)
+
+
 def main():
     filepath = os.path.join('data', 'tickers.txt')
     
@@ -27,6 +34,8 @@ def main():
 
         for ticker in tickers:
             collect_historical(ticker)
+
+    collect_indexes()
 
 
 if __name__ == '__main__':

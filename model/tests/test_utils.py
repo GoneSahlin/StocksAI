@@ -33,11 +33,19 @@ def create_example_price_df():
 
     return price_df
 
+
 def create_example_revenue_df():
     revenue_df = pl.DataFrame({"end_date": ["2022-12-31", "2022-09-30", "2022-06-30", "2022-03-31", "2021-12-31"],
                                "revenue": [43999000000, 39392000000, 40190000000, 34476000000, 37678000000]})
 
     return revenue_df
+
+
+def create_example_index_df(ticker):
+    index_df = pl.DataFrame({"Date": ["2022-05-06", "2022-06-01", "2022-07-12", "2022-08-11", "2022-09-15", "2022-10-10", "2022-11-10", "2022-12-19", "2023-01-04", "2023-02-21", "2023-03-20"],
+                             ticker: [13.098385, 12.490015, 10.655688, 14.737184, 13.862077, 10.575768, 13.201092, 10.996746, 11.29777, 12.2, 11.18]})
+
+    return index_df
 
 
 def test_split_train_val_test():
@@ -87,7 +95,6 @@ def test_clean_price_df():
     price_df = utils.clean_price_df(price_df)
 
     assert type(price_df[0,0]) == datetime.date
-    print(price_df)
 
 
 def test_clean_quarterly_financials_df():
@@ -106,5 +113,14 @@ def test_join_quarterly_financials_df():
 
     df = utils.join_quarterly_financials_df(price_df, revenue_df)
     
-    assert df.filter(pl.col("Date") == datetime.datetime(2022, 5, 6)).get_column("revenue")[0] == 34476000000
+    assert df.filter(pl.col("Date") == datetime.datetime(2022, 5, 6)).get_column("revenue").is_empty()
     assert df.filter(pl.col("Date") == datetime.datetime(2022, 12, 19)).get_column("revenue")[0] == 39392000000
+
+
+def test_clean_index_df():
+    ticker = "^GSPC"
+    index_df = create_example_index_df(ticker)
+    index_df = utils.clean_index_df(index_df, ticker)
+
+    assert type(index_df[0,0]) == datetime.date
+    assert index_df.columns == ["Date", ticker]

@@ -41,6 +41,18 @@ def collect_price_historical(ticker):
     df.write_csv(filepath)
 
 
+def collect_index_historical(ticker):
+    link = get_download_link(ticker)
+    data = get_data(link)
+    df = clean_data(data)
+
+    df = df.select(pl.col(["Date", "Adj Close"]))
+    df = df.rename({"Adj Close": ticker})
+
+    filepath = os.path.join("data", "indexes", ticker + ".csv")
+    df.write_csv(filepath)
+
+
 def main():
     collect_price_historical("F")
     # collect_price_historical("AAPL")
