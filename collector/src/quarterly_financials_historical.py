@@ -43,7 +43,6 @@ def get_macrotrends_data(url, value_name, url_extension, unit_multiplier=1_000_0
         return df
 
 
-
 def collect_quarterly_historical(ticker):
     macrotrends_url = get_macrotrends_url(ticker)
 
@@ -64,9 +63,13 @@ def collect_quarterly_historical(ticker):
                                  eps_df.get_column("eps"),
                                  shares_outstanding_df.get_column("shares_outstanding"))
 
-    # save df
-    filepath = os.path.join("data", "quarterly_financials", ticker + "_quarterly_financials.csv")
-    df.write_csv(filepath)
+    return df
+
+
+def save_quarterly_historical(df, ticker, fs, s3_prefix):
+    filepath = os.path.join(s3_prefix, "quarterly_financials", ticker + "_quarterly_financials.csv")
+    with fs.open(filepath, 'wb') as outfile:
+        df.write_csv(outfile)
 
 
 if __name__ == "__main__":

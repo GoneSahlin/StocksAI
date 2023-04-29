@@ -37,13 +37,35 @@ def collect_price_historical(ticker):
     data = get_data(link)
     df = clean_data(data)
 
-    filepath = os.path.join("data", "prices", ticker + "_prices.csv")
-    df.write_csv(filepath)
+    return df
+
+
+def save_price_historical(df, ticker, fs, s3_prefix):
+    filepath = os.path.join(s3_prefix, "prices", ticker + "_prices.csv")
+    with fs.open(filepath, 'wb') as outfile:
+        df.write_csv(outfile)
+    
+
+def collect_index_historical(ticker):
+    link = get_download_link(ticker)
+    data = get_data(link)
+    df = clean_data(data)
+
+    df = df.select(pl.col(["Date", "Adj Close"]))
+    df = df.rename({"Adj Close": ticker})
+
+    return df
+
+
+def save_index_historical(df, ticker, fs, s3_prefix):
+    filepath = os.path.join(s3_prefix, "indexes", ticker + ".csv")
+    with fs.open(filepath, 'wb') as outfile:
+        df.write_csv(outfile)
 
 
 def main():
-    collect_price_historical("F")
-    collect_price_historical("AAPL")
+    df = collect_price_historical("F")
+    # collect_price_historical("AAPL")
 
 
 if __name__ == "__main__":

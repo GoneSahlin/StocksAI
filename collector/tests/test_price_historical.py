@@ -13,9 +13,11 @@ def test_get_download_link():
 
 def test_get_data():
     link = price_historical.get_download_link('F')
-
     data = price_historical.get_data(link)
+    assert type(data) == str
 
+    link = price_historical.get_download_link('^GSPC')
+    data = price_historical.get_data(link)
     assert type(data) == str
 
 
