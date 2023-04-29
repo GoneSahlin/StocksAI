@@ -29,7 +29,7 @@ collect: $(VENV)
 	$(VENV)/bin/python3 collector/src/historical.py
 	
 collect_lambda.zip: FORCE
-	rm collect_lambda.zip
+	rm -f collect_lambda.zip
 	python3 -m venv .lambda-venv
 	.lambda-venv/bin/pip install -e collector
 	cd .lambda-venv/lib/python3.10/site-packages &&\
