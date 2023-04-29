@@ -1,7 +1,7 @@
 import os
 import polars as pl
 
-from src import utils
+from utils import utils
 from src.window_generator import WindowGenerator
 
 

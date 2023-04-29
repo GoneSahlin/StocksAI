@@ -2,6 +2,8 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
+from utils import utils
+
 
 class WindowGenerator():
     def __init__(self, input_width, label_width, shift,

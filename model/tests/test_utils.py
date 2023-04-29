@@ -4,7 +4,7 @@ import os
 import pytest
 import s3fs
 
-from src import utils
+from utils import utils
 from src.dataset_generator import DatasetGenerator
 
 

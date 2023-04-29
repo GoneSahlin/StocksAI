@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from src import utils
+from utils import utils
 from dataset_generator import DatasetGenerator
 
 
