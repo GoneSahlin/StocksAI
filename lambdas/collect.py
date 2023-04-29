@@ -1,8 +1,13 @@
 import json
 
+from collector.src.historical import main
+
+
 
 def lambda_handler(event, context):
+    main()
+    
     return {
         'statusCode': 200,
-        'body': json.dumps('Hello World')
+        'body': json.dumps('Success')
     }
