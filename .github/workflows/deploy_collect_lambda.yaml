@@ -1,5 +1,8 @@
 name: Deploy Lambdas
-on: [push]
+on:
+  push:
+    branches:
+      - main
 jobs:
   deploy_source:
     name: deploy lambda from source
