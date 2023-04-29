@@ -2,6 +2,9 @@ import polars as pl
 import os
 
 
+s3_prefix = "s3://sahlin.stocksai"
+
+
 def split_train_val_test(df, train_percent, val_percent):
     n = len(df)
     train_df = df[0:int(n*train_percent)]
@@ -26,13 +29,13 @@ def split_dfs(dfs, train_percent, val_percent):
 
 
 def load_data(folder, return_filenames=False):
-    filenames = os.listdir(os.path.join("data", folder))
+    filenames = os.listdir(os.path.join(s3_prefix, folder))
 
     filenames.sort()
     
     dfs = []
     for filename in filenames:
-        filepath = os.path.join("data", folder, filename)
+        filepath = os.path.join(s3_prefix, folder, filename)
 
         df = pl.read_csv(filepath)
 
@@ -105,17 +108,19 @@ def clean_index_df(df: pl.DataFrame, ticker):
 
     df = df.with_columns(pl.col(ticker) / pl.col(ticker).shift())
 
+    df = df.drop_nulls()
+
+    df = df[1:]
+
     return df
 
 
-def combine_index_dfs():
-    index_dfs, index_tickers = load_data('indexes', return_filenames=True)
-
-    index_tickers = [ticker[:-4] for ticker in index_tickers] # remove .csv from filenames
-    for i, index_df in enumerate(index_dfs):
-        index_df = clean_index_df(index_df, index_tickers[i])
+def clean_and_join_index_dfs(index_dfs, index_tickers):
+    for i in range(len(index_dfs)):
+        index_dfs[i] = clean_index_df(index_dfs[i], index_tickers[i])
 
     indexes_df: pl.DataFrame = index_dfs[0]
+
     for index_df in index_dfs[1:]:
         indexes_df = indexes_df.join(index_df, on="Date")
 
@@ -126,13 +131,19 @@ def load_and_setup_data():
     price_dfs = load_data('prices')
     quarterly_financials_dfs = load_data('quarterly_financials')
 
+    index_dfs, index_tickers = load_data('indexes', return_filenames=True)
+    index_tickers = [ticker[:-4] for ticker in index_tickers]  # remove .csv from filenames
+
+    indexes_df = clean_and_join_index_dfs(index_dfs, index_tickers)
 
     dfs = []
     for (price_df, quarterly_financials_df) in zip(price_dfs, quarterly_financials_dfs):
         price_df = clean_price_df(price_df)
         quarterly_financials_df = clean_quarterly_financials_df(quarterly_financials_df)
         
-        df = join_quarterly_financials_df(price_df, quarterly_financials_df)
+        df: pl.DataFrame = join_quarterly_financials_df(price_df, quarterly_financials_df)
+
+        df = df.join(indexes_df, on="Date")
 
         df = df.drop(["Date", "end_date"])
 

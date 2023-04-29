@@ -5,21 +5,7 @@ from dataset_generator import DatasetGenerator
 
 
 def train():
-    price_dfs = utils.load_data('prices')
-    quarterly_financials_dfs = utils.load_data('quarterly_financials')
-
-    dfs = []
-    for (price_df, quarterly_financials_df) in zip(price_dfs, quarterly_financials_dfs):
-        price_df = utils.clean_price_df(price_df)
-        quarterly_financials_df = utils.clean_quarterly_financials_df(quarterly_financials_df)
-
-        df = utils.join_quarterly_financials_df(price_df, quarterly_financials_df)
-
-        df = df.drop(["Date", "end_date"])
-
-        dfs.append(df)
-
-    train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
+    train_dfs, val_dfs, test_dfs = utils.load_and_setup_data()
 
     wide_window = DatasetGenerator(train_dfs, val_dfs, test_dfs,  10, 10, 1, ['Adj Close'])
 

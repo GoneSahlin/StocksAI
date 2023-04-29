@@ -124,3 +124,31 @@ def test_clean_index_df():
 
     assert type(index_df[0,0]) == datetime.date
     assert index_df.columns == ["Date", ticker]
+
+
+def test_clean_and_join_index_dfs():
+    tickers = ["^GSPC", "^TNX"]
+    index_dfs = [create_example_index_df(ticker) for ticker in tickers]
+
+    indexes_df = utils.clean_and_join_index_dfs(index_dfs, tickers)
+
+    assert not indexes_df.is_empty()
+    col_names = ["Date"]
+    col_names.extend(tickers)
+    assert indexes_df.columns == col_names
+    assert type(indexes_df[0,0]) == datetime.date
+
+
+def test_load_and_setup_data():
+    if not os.path.exists("data"):
+        pytest.skip("Data folder does not exist")
+
+    train_dfs, val_dfs, test_dfs = utils.load_and_setup_data()
+
+    assert all([not train_df.is_empty() for train_df in train_dfs])
+    assert all([not val_df.is_empty() for val_df in val_dfs])
+    assert all([not test_df.is_empty() for test_df in test_dfs])
+
+    assert all([all(train_df.null_count().select(pl.all() == 0).row(0)) for train_df in train_dfs])
+    assert all([all(val_df.null_count().select(pl.all() == 0).row(0)) for val_df in val_dfs])
+    assert all([all(test_df.null_count().select(pl.all() == 0).row(0)) for test_df in test_dfs])
