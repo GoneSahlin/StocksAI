@@ -31,7 +31,7 @@ collect: $(VENV)
 collect_lambda.zip: FORCE
 	rm -f collect_lambda.zip
 	python3 -m venv .lambda-venv
-	.lambda-venv/bin/pip install -e collector
+	.lambda-venv/bin/pip install ./collector
 	cd .lambda-venv/lib/python3.10/site-packages &&\
 	zip -r ../../../../collect_lambda.zip .
 	cd lambdas &&\

@@ -1,5 +1,5 @@
 import json
-from stocksai_collector.src.historical import main
+from src.historical import main
 
 
 
