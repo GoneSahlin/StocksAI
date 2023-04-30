@@ -3,7 +3,6 @@ import s3fs
 import tempfile
 import os
 import zipfile
-import numpy as np
 import polars as pl
 
 from utils import utils

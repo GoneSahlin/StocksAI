@@ -50,7 +50,8 @@ $(APP_VENV): app/pyproject.toml app/setup.cfg
 
 .PHONY: run-app
 run-app: $(APP_VENV)
-	$(APP_VENV)/bin/streamlit run app/src/app.py
+	cd app/src/ &&\
+	../../$(APP_VENV)/bin/streamlit run app.py
 
 
 # .PHONY: build-conda-env
