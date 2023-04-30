@@ -71,9 +71,9 @@ def predict():
 
     predictions = make_predictions(model, inputs)
 
-    predictions_df = pl.DataFrame({ticker: prediction for ticker, prediction in zip(tickers, predictions)})
+    predictions_df = pl.DataFrame({"Ticker": tickers, "Predicted Percent Increase": predictions})
 
-    print(predictions_df)
+    return predictions_df
 
 
 if __name__ == "__main__":
