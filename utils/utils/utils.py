@@ -82,7 +82,7 @@ def setup_and_split_data(dfs, train_percent, val_percent, get_mean_and_std=False
         test_dfs.append(test_df)
 
         train_means.append(train_mean)
-        train_stds.append(train_stds)
+        train_stds.append(train_std)
 
     if get_mean_and_std:
         return train_dfs, val_dfs, test_dfs, train_means, train_stds
