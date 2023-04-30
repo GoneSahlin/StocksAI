@@ -1,0 +1,4 @@
+streamlit
+polars
+s3fs
+tensorflow==2.12.*
