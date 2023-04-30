@@ -1,7 +1,4 @@
 import streamlit as st
-import sys
-
-sys.path.insert(0, "../../utils/") 
 
 from predict import predict
 

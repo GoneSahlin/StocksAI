@@ -4,6 +4,10 @@ import tempfile
 import os
 import zipfile
 import polars as pl
+import sys
+
+sys.path.insert(0, "../../utils/") 
+
 
 from utils import utils
 from utils.window_generator import WindowGenerator
@@ -73,10 +77,3 @@ def predict():
     predictions_df = pl.DataFrame({"Ticker": tickers, "Predicted Percent Increase": predictions})
 
     return predictions_df
-
-
-if __name__ == "__main__":
-    predict()
-
-
-
