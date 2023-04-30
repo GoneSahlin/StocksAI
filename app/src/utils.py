@@ -50,10 +50,12 @@ def load_data(folder, fs: s3fs.S3FileSystem, return_filenames=False):
     return dfs
 
 
-def setup_and_split_data(dfs, train_percent, val_percent):
+def setup_and_split_data(dfs, train_percent, val_percent, get_mean_and_std=False):
     train_dfs = []
     val_dfs = []
     test_dfs = []
+    train_means = []
+    train_stds = []
     for df in dfs:
         # split data
         train_df, val_df, test_df = split_train_val_test(df, train_percent, val_percent)
@@ -79,6 +81,11 @@ def setup_and_split_data(dfs, train_percent, val_percent):
         val_dfs.append(val_df)
         test_dfs.append(test_df)
 
+        train_means.append(train_mean)
+        train_stds.append(train_stds)
+
+    if get_mean_and_std:
+        return train_dfs, val_dfs, test_dfs, train_means, train_stds
     return train_dfs, val_dfs, test_dfs
 
 

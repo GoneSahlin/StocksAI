@@ -27,9 +27,9 @@ def load_model():
 
 
 def load_data():
-    dfs, _, _, tickers = utils.load_and_setup_data(train_percent=1, val_percent=0, get_tickers=True)
+    dfs, _, _, tickers, means, stds = utils.load_and_setup_data(train_percent=1, val_percent=0, get_tickers=True, get_mean_and_std=True)
     
-    return dfs, tickers
+    return dfs, tickers, means, stds
 
 
 def make_inputs(dfs):
@@ -62,14 +62,25 @@ def make_predictions(model: tf.keras.Model, inputs):
     return predictions
 
 
+def denormalize_predictions(df: pl.DataFrame, tickers, means, stds):
+    means_dict = {ticker: mean for ticker, mean in zip(tickers, means)}
+    stds_dict = {ticker: std for ticker, std in zip(tickers, stds)}
+    
+    df = df.with_columns(((pl.col("Predicted Percent Increase") * stds_dict[pl.col("Ticker")] + means_dict[pl.col("Ticker")]) * 100).alias("Predicted Percent Increase"))
+
+    return df
+
+
 def predict():
     model = load_model()
-    dfs, tickers = load_data()
+    dfs, tickers, means, stds = load_data()
 
     inputs = make_inputs(dfs)
 
     predictions = make_predictions(model, inputs)
 
     predictions_df = pl.DataFrame({"Ticker": tickers, "Predicted Percent Increase": predictions})
+
+    predictions_df = denormalize_predictions(predictions_df, tickers, means, stds)
 
     return predictions_df
