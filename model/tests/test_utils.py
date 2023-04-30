@@ -5,7 +5,7 @@ import pytest
 import s3fs
 
 from utils import utils
-from src.dataset_generator import DatasetGenerator
+from utils.dataset_generator import DatasetGenerator
 
 
 fs = s3fs.S3FileSystem()

@@ -102,6 +102,8 @@ def clean_quarterly_financials_df(df: pl.DataFrame):
 def join_quarterly_financials_df(price_df: pl.DataFrame, quarterly_financials_df: pl.DataFrame):
     quarterly_financials_df = quarterly_financials_df.sort(by="end_date")
     earliest_date = quarterly_financials_df.select("end_date").min(0)[0,0]
+
+    price_df = price_df.set_sorted(pl.col("Date"))
     df = price_df.filter(pl.col("Date") >= earliest_date).join_asof(quarterly_financials_df, left_on="Date", right_on="end_date", strategy="backward")
 
     return df
@@ -131,10 +133,10 @@ def clean_and_join_index_dfs(index_dfs, index_tickers):
     return indexes_df
 
 
-def load_and_setup_data(train_percent=.7, val_percent=.2):
+def load_and_setup_data(train_percent=.7, val_percent=.2, get_tickers=False):
     fs = s3fs.S3FileSystem()
 
-    price_dfs = load_data('prices', fs)
+    price_dfs, tickers = load_data('prices', fs, return_filenames=True)
     quarterly_financials_dfs = load_data('quarterly_financials', fs)
 
     index_dfs, index_tickers = load_data('indexes', fs, return_filenames=True)
@@ -157,4 +159,7 @@ def load_and_setup_data(train_percent=.7, val_percent=.2):
 
     train_dfs, val_dfs, test_dfs = setup_and_split_data(dfs, train_percent, val_percent)
 
+    if get_tickers:
+        tickers = [ticker.replace("_prices.csv", "") for ticker in tickers]
+        return train_dfs, val_dfs, test_dfs, tickers
     return train_dfs, val_dfs, test_dfs

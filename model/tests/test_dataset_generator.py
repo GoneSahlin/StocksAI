@@ -1,6 +1,6 @@
 import polars as pl
 
-from src.dataset_generator import DatasetGenerator
+from utils.dataset_generator import DatasetGenerator
 from utils import utils
 
 
