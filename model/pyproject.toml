@@ -4,4 +4,4 @@ build-backend = "setuptools.build_meta"
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
-addopts = "--ignore=model/stocksai-model-env"
+addopts = "--ignore=model/src/train_test.py"

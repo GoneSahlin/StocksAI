@@ -50,7 +50,7 @@ def load_data(folder, fs: s3fs.S3FileSystem, return_filenames=False):
     return dfs
 
 
-def setup_data(dfs, train_percent, val_percent):
+def setup_and_split_data(dfs, train_percent, val_percent):
     train_dfs = []
     val_dfs = []
     test_dfs = []
@@ -131,7 +131,7 @@ def clean_and_join_index_dfs(index_dfs, index_tickers):
     return indexes_df
 
 
-def load_and_setup_data():
+def load_and_setup_data(train_percent=.7, val_percent=.2):
     fs = s3fs.S3FileSystem()
 
     price_dfs = load_data('prices', fs)
@@ -155,6 +155,6 @@ def load_and_setup_data():
 
         dfs.append(df)
 
-    train_dfs, val_dfs, test_dfs = setup_data(dfs, .7, .2)
+    train_dfs, val_dfs, test_dfs = setup_and_split_data(dfs, train_percent, val_percent)
 
     return train_dfs, val_dfs, test_dfs

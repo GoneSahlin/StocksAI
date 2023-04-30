@@ -44,6 +44,7 @@ collect_lambda.zip: FORCE
 # ----------------- APP ------------------
 $(APP_VENV): app/pyproject.toml app/setup.cfg
 	python3 -m venv $(APP_VENV)
+	$(APP_VENV)/bin/pip install -e utils[dev]
 	$(APP_VENV)/bin/pip install -e app[dev]
 	touch $(APP_VENV)
 

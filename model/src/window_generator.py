@@ -109,11 +109,13 @@ class WindowGenerator():
     
     @property
     def val(self):
-        return self.make_dataset(self.val_df)
+        if not self.val_df.is_empty():
+            return self.make_dataset(self.val_df)
     
     @property
     def test(self):
-        return self.make_dataset(self.test_df)
+        if not self.test_df.is_empty():
+            return self.make_dataset(self.test_df)
     
     @property
     def example(self):
