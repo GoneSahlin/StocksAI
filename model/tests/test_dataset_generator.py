@@ -1,7 +1,7 @@
 import polars as pl
 
-from src.dataset_generator import DatasetGenerator
-from src import utils
+from utils.dataset_generator import DatasetGenerator
+from utils import utils
 
 
 def create_dfs():

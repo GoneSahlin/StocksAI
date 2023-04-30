@@ -2,6 +2,8 @@ import numpy as np
 import tensorflow as tf
 import matplotlib.pyplot as plt
 
+import utils
+
 
 class WindowGenerator():
     def __init__(self, input_width, label_width, shift,
@@ -107,11 +109,13 @@ class WindowGenerator():
     
     @property
     def val(self):
-        return self.make_dataset(self.val_df)
+        if not self.val_df.is_empty():
+            return self.make_dataset(self.val_df)
     
     @property
     def test(self):
-        return self.make_dataset(self.test_df)
+        if not self.test_df.is_empty():
+            return self.make_dataset(self.test_df)
     
     @property
     def example(self):

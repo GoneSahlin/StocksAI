@@ -1,8 +1,8 @@
 import os
 import polars as pl
 
-from src import utils
-from src.window_generator import WindowGenerator
+import utils
+from utils.window_generator import WindowGenerator
 
 
 class DatasetGenerator():
@@ -40,5 +40,9 @@ class DatasetGenerator():
             test = self.windows[i].test
 
             self.train = self.train.concatenate(train)
-            self.val = self.val.concatenate(val)
-            self.test = self.test.concatenate(test)
+
+            if val:
+                self.val = self.val.concatenate(val)
+            
+            if test:
+                self.test = self.test.concatenate(test)

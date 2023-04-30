@@ -2,8 +2,8 @@ import numpy as np
 import polars as pl
 import tensorflow as tf
 
-from src.window_generator import WindowGenerator
-from src import utils
+from utils.window_generator import WindowGenerator
+from utils import utils
 
 
 def create_df():

@@ -4,8 +4,8 @@ import os
 import pytest
 import s3fs
 
-from src import utils
-from src.dataset_generator import DatasetGenerator
+from utils import utils
+from utils.dataset_generator import DatasetGenerator
 
 
 fs = s3fs.S3FileSystem()
@@ -75,17 +75,25 @@ def test_load_data():
     assert dfs
 
 
-def test_setup_data():
+def test_setup_and_split_data():
     dfs = utils.load_data('prices', fs)
 
     for df in dfs:
         df.drop_in_place("Date")
 
-    train_dfs, val_dfs, test_dfs = utils.setup_data(dfs, .7, .2)
+    train_dfs, val_dfs, test_dfs = utils.setup_and_split_data(dfs, .7, .2)
 
     assert train_dfs
     assert val_dfs
     assert test_dfs
+
+    train_dfs, val_dfs, test_dfs = utils.setup_and_split_data(dfs, 1, 0)
+
+    assert train_dfs
+    assert val_dfs
+    assert test_dfs
+    assert all([val_df.is_empty() for val_df in val_dfs])
+    assert all([test_df.is_empty() for test_df in test_dfs])
 
 
 def test_clean_price_df():
