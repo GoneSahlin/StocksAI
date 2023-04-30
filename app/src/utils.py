@@ -140,7 +140,7 @@ def clean_and_join_index_dfs(index_dfs, index_tickers):
     return indexes_df
 
 
-def load_and_setup_data(train_percent=.7, val_percent=.2, get_tickers=False):
+def load_and_setup_data(train_percent=.7, val_percent=.2, get_tickers=False, get_mean_and_std=False):
     fs = s3fs.S3FileSystem()
 
     price_dfs, tickers = load_data('prices', fs, return_filenames=True)
@@ -164,9 +164,16 @@ def load_and_setup_data(train_percent=.7, val_percent=.2, get_tickers=False):
 
         dfs.append(df)
 
-    train_dfs, val_dfs, test_dfs = setup_and_split_data(dfs, train_percent, val_percent)
+    if get_mean_and_std:
+        train_dfs, val_dfs, test_dfs, means, stds = setup_and_split_data(dfs, train_percent, val_percent, get_mean_and_std=True)
+    else:
+        train_dfs, val_dfs, test_dfs = setup_and_split_data(dfs, train_percent, val_percent)
 
-    if get_tickers:
-        tickers = [ticker.replace("_prices.csv", "") for ticker in tickers]
+    tickers = [ticker.replace("_prices.csv", "") for ticker in tickers]
+    if get_tickers and get_mean_and_std:
+        return train_dfs, val_dfs, test_dfs, tickers, means, stds
+    elif get_tickers:
         return train_dfs, val_dfs, test_dfs, tickers
+    elif get_mean_and_std:
+        return train_dfs, val_dfs, test_dfs, means, stds
     return train_dfs, val_dfs, test_dfs
