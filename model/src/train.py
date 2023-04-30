@@ -11,7 +11,6 @@ from dataset_generator import DatasetGenerator
 def train():
     train_dfs, val_dfs, test_dfs = utils.load_and_setup_data(train_percent=.8, val_percent=.2)
 
-
     wide_window = DatasetGenerator(train_dfs, val_dfs, test_dfs,  10, 10, 1, ['Adj Close'])
 
     lstm_model = tf.keras.models.Sequential([
