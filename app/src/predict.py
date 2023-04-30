@@ -68,11 +68,6 @@ def denormalize_predictions(df: pl.DataFrame, tickers, means_dfs, stds_dfs):
 
     means_dict = {ticker: mean for ticker, mean in zip(tickers, means)}
     stds_dict = {ticker: std for ticker, std in zip(tickers, stds)}
-
-    print(means_dict)
-    print(stds_dict)
-    print(df)
-
     
     df = df.with_columns((((pl.col("Predicted Percent Increase") * pl.col("Ticker").map_dict(stds_dict) + pl.col("Ticker").map_dict(means_dict)) - 1) * 100).alias("Predicted Percent Increase"))
 
