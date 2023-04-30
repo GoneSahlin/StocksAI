@@ -4,13 +4,9 @@ import tempfile
 import os
 import zipfile
 import polars as pl
-import sys
 
-# sys.path.insert(0, "../../utils/") 
-
-
-from utils import utils
-from utils.window_generator import WindowGenerator
+import utils
+from window_generator import WindowGenerator
 
 
 def load_model():
