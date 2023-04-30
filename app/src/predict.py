@@ -6,7 +6,7 @@ import zipfile
 import polars as pl
 import sys
 
-sys.path.insert(0, "../../utils/") 
+# sys.path.insert(0, "../../utils/") 
 
 
 from utils import utils
