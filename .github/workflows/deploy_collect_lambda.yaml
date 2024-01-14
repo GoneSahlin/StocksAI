@@ -1,23 +1,23 @@
-name: Deploy Lambdas
-on:
-  push:
-    branches:
-      - main
-jobs:
-  deploy_source:
-    name: deploy lambda from source
-    runs-on: ubuntu-latest
-    steps:
-      - name: checkout
-        uses: actions/checkout@v1
-      - name: build
-        run: |
-          make collect_lambda.zip
-      - name: deploy
-        uses: appleboy/lambda-action@master
-        with:
-          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_region: ${{ secrets.AWS_REGION }}
-          function_name: stocksai_collect
-          zip_file: collect_lambda.zip
+# name: Deploy Lambdas
+# on:
+#   push:
+#     branches:
+#       - main
+# jobs:
+#   deploy_source:
+#     name: deploy lambda from source
+#     runs-on: ubuntu-latest
+#     steps:
+#       - name: checkout
+#         uses: actions/checkout@v1
+#       - name: build
+#         run: |
+#           make collect_lambda.zip
+#       - name: deploy
+#         uses: appleboy/lambda-action@master
+#         with:
+#           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+#           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#           aws_region: ${{ secrets.AWS_REGION }}
+#           function_name: stocksai_collect
+#           zip_file: collect_lambda.zip
